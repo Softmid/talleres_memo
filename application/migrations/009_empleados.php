@@ -17,7 +17,7 @@ class Migration_empleados extends CI_Migration {
 
 	public function down()
 	{
-		$this->dbforge->drop_column('empleados', 'piezas');
+		$this->dbforge->drop_column('empleados', 'privilegios');
 
 	}
 
