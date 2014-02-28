@@ -9,7 +9,7 @@ class Procesos_Empleado extends CI_Model {
 	
 	function ver()
 	{
-		$query = $this->db->query('SELECT * FROM empleados WHERE privilegios = 1;');
+		$query = $this->db->query('SELECT * FROM empleados WHERE privilegios = 0;');
 		return $query;
 	}
 	

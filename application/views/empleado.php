@@ -69,23 +69,6 @@ $(document).ready(function(){
     var validator = $("#form_usuarios").validate({ 
 		  rules: 
 		  {
-			password: 
-			{	
-				required: true 
-			},
-			password_conf: 
-			{	
-				required: true,
-				equalTo: "#password" 
-			},
-			username:
-		  {		
-		  		required: true,
-				remote: {
-				url: "index.php/check/check_username",
-				type: "post"
-				 		}
-		  },
 		  nombre:
 		  {
 			  required: true,
@@ -103,10 +86,6 @@ $(document).ready(function(){
 			  required: true,
 			  minlength: 2,
 			  maxlength: 30
-		  },
-		  privilegios:
-		  {
-			  required: true
 		  }
 		  
 			
