@@ -590,7 +590,10 @@ class Vehiculo extends CI_Controller {
 		$data['vehiculo'] = $this->Procesos_Vehiculo->verVehiculoMod($id);
 		$this->load->model('Procesos_Orden');
 		$data['orden'] = $this->Procesos_Orden->verOrden($idOrden);
-		$this->Procesos_Orden->usar_corbata($idOrden);
+		if($this->session->userdata('privilegios')!=1) 
+			{ 
+				$this->Procesos_Orden->usar_corbata($idOrden);
+			}
 		$this->load->model('Procesos_Categorias');
 		$data['categoria'] = $this->Procesos_Categorias->categorias();
 		$this->load->model('Procesos_Categorias');
