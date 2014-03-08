@@ -11,7 +11,7 @@ class Procesos_Caracteristicas extends CI_Model {
 	public function caracteristicasRelacion($id,$idOrden)
 	{
 		$query = $this->db->query("SELECT *,(SELECT TRUE FROM relcaracteristica WHERE 
-caracteristicas.idCaracteristica = relcaracteristica.idCaracteristica  AND idOrden = '$idOrden' ) 
+caracteristicas.idCaracteristica = relcaracteristica.idCaracteristica  AND idOrden = '$idOrden' Limit 1 ) 
 AS checked FROM caracteristicas");
 		return $query;
 	}
