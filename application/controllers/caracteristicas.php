@@ -74,8 +74,8 @@ class Caracteristicas extends CI_Controller {
 
 		$this->load->model('Procesos_Caracteristicas');
 		$data['caracteristicas'] = $this->Procesos_Caracteristicas->caracteristicasRelacion($id,$idOrden);
-		$this->load->model('Procesos_Categorias');
-		$data['categorias'] = $this->Procesos_Categorias->categorias();
+		$this->load->model('Procesos_Servicios');
+		$data['categorias'] = $this->Procesos_Servicios->categorias();
 		
 		$this->load->view("modificar_caracteristicas", $data);
 	}
