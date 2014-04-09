@@ -563,10 +563,11 @@ class Vehiculo extends CI_Controller {
 			{ 
 				$this->Procesos_Orden->usar_corbata($idOrden);
 			}
-		$this->load->model('Procesos_Categorias');
-		$data['categoria'] = $this->Procesos_Categorias->categorias();
-		$this->load->model('Procesos_Categorias');
-		$data['rel_trabajo'] = $this->Procesos_Categorias->rel_categoria($idOrden);
+		
+		$this->load->model('Procesos_Servicios');
+		$data['categorias'] = $this->Procesos_Servicios->categorias();
+		$data['servicios'] = $this->Procesos_Servicios->ver($idOrden);
+		
 		$this->load->view("site_header");
 		$this->load->view("impresionCorbata", $data);
 	}

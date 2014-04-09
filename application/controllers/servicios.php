@@ -16,7 +16,7 @@ class Servicios extends CI_Controller {
 
 	function verRelacionCategoria()
 	{
-		//$idVehiculo = $this->input->post('idVehiculo');
+		
 		$idOrden = $this->input->post('idOrden');
 		$this->load->model('Procesos_Servicios');
 		$data['rel'] = $this->Procesos_Servicios->ver($idOrden);
