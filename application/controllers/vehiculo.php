@@ -175,16 +175,23 @@ class Vehiculo extends CI_Controller {
 
 	
 	
-	function modificarVehiculo()
+	function modificarVehiculo($id_vehiculo,$id_orden)
 	{
-		$id = $this->input->post('id');
-		$idOrden = $this->input->post('idOrden');
 		$this->load->model('Procesos_Vehiculo');
 		
-		$vehiculos['datos'] = $this->Procesos_Vehiculo->verVehiculoMod($id);
+		$vehiculos['datos'] = $this->Procesos_Vehiculo->verVehiculoMod($id_vehiculo);
 		$this->load->model('Procesos_Orden');
-		$vehiculos['orden'] = $this->Procesos_Orden->verOrden($idOrden);
+		$vehiculos['orden'] = $this->Procesos_Orden->verOrden($id_orden);
+
+		$data = array( 
+			'pagina' => 'vehiculos'
+		);
+
+		$this->load->view("site_header");
+		$this->load->view("site_nav",$data);
 		$this->load->view("modificar_vehiculo", $vehiculos);
+		$this->load->view("site_footer");
+		
 	}
 	
 	function modVehiculo ()
@@ -292,14 +299,6 @@ class Vehiculo extends CI_Controller {
 		$this->load->view('post/update_gastoVehiculo', $resultJson);
 	}
 
-	function verRelacionCategoria()
-	{
-		$idVehiculo = $this->input->post('idVehiculo');
-		$idOrden = $this->input->post('idOrden');
-		$this->load->model('Procesos_relacionCategorias');
-		$data['rel'] = $this->Procesos_relacionCategorias->ver($idVehiculo,$idOrden);
-		$this->load->view("rel_categoria", $data);
-	}
 	
 	/* categoria */
 	
@@ -467,36 +466,7 @@ class Vehiculo extends CI_Controller {
 		
 	}
 	
-	public function agregarTrabajo()
-	{	
-		
-		$id = $this->input->post('idVehiculo');
-		$idOrden = $this->input->post('idOrden');
-
-		
-			$cant = $this->input->post('cantInput');
-			
-			$cant = $cant + 1;
-			
-			for($i=1;$i<$cant;$i++)
-			{
 	
-				
-				$insertar = array(
-					
-					'activo' => 1,
-					'concepto' => $this->input->post('concepto'.$i),
-					'idOrden' => $this->input->post('idOrden')
-				
-				);
-				
-				$this->load->model('Procesos_relacionCategorias');
-				$this->Procesos_relacionCategorias->agregar($insertar);
-			}
-		
-
-		
-	}
 
 	function actualizarMonto()
 	{
@@ -573,11 +543,10 @@ class Vehiculo extends CI_Controller {
 		$data['vehiculo'] = $this->Procesos_Vehiculo->verVehiculoMod($id);
 		$this->load->model('Procesos_Orden');
 		$data['orden'] = $this->Procesos_Orden->verOrden($idOrden);
-		$this->load->model('Procesos_Caracteristicas');
-		$data['caracteristicas'] = $this->Procesos_Caracteristicas->caracteristicasRelacion($id,$idOrden);
+
 		$this->load->model('Procesos_relacionCategorias');
 		$data['categorias'] = $this->Procesos_relacionCategorias->verCategorias($id,$idOrden);
-		$data['rel'] = $this->Procesos_relacionCategorias->ver($id,$idOrden);
+		
 		$this->load->model('Procesos_Categorias');
 		$data['rel_trabajo'] = $this->Procesos_Categorias->rel_categoria($idOrden);
 		$this->load->view("site_header");

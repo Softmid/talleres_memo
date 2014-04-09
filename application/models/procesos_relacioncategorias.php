@@ -5,16 +5,8 @@ class Procesos_relacionCategorias extends CI_Model {
 	
 	/* categoria */
 	
-	function agregar($data)
-	{
-		$this->db->insert('relcategorias', $data);
-	}
+	
 
-	function ver($idVehiculo,$idOrden)
-	{
-		$query = $this->db->query("SELECT * FROM relcategorias WHERE idOrden = '$idOrden'");
-		return $query;
-	}
 
 	function verCategorias($idVehiculo,$idOrden)
 	{

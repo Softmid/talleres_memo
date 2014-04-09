@@ -152,7 +152,7 @@ class Procesos_Vehiculo extends CI_Model {
 	{	
 		$query = $this->db->query("select * from gastos_vehiculo where idCategoria = ".$data['idCategorias']."");
 		if($query->num_rows() > 0)
-		{	
+		{ 	
 			$update = array(
 				'visible' => '0'
 			);

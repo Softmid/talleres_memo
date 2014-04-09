@@ -1,0 +1,5 @@
+<? 
+
+ echo '<input class="monto" type="text" name="monto" data-id="'.$data->id.'" size="5" id="monto'.$data->id.'" value="" />';
+
+?>

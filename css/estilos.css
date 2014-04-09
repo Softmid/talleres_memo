@@ -1908,3 +1908,19 @@ table
 	text-align: center;
 	border-radius: 3px;
 }
+
+/* boton agreagr categoria */
+
+.btn-categoria-color {
+	background-color: #2492C5;
+	width: 200px;
+	text-align: center;
+	margin: 3px 10px;
+	border-radius: 3px;
+	color: #fff;
+	border: 1px solid #4A9CC2;
+}
+	.btn-categoria-color:hover,
+	.btn-categoria-color:focus {
+		background-color: #4A9CC2;
+	}

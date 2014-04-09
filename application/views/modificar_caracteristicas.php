@@ -1,5 +1,7 @@
-<section id="form_agregarCategorias" title="Formulario Agregar Categoria">
+<script type="text/javascript" src="js/funciones.js"></script>
 
+
+<section id="form_checkbox" title="Formulario Agregar Categoria">
     <section class="columna-2 clear">
     <aside class="contenedor-caracteristica clear">
         <form method="post" accept-charset="utf-8" id="form_eliminarCategorias">
@@ -30,9 +32,10 @@
     </aside>
     
     <aside class="contenedor-caracteristica clear">
+		
         <form method="post" accept-charset="utf-8" id="form_trabajoSolicitado">
             <ul id="datos">
-            	<li><h2>Trabajo Solicitado<span>>></span></h2></li>
+            	<li><h2>Trabajo Solicitado<span>>></span><a class="link-abrir btn-categoria-color" data-open="form_agregarCategorias" data-link="boton-categoria" data-width="800">Nueva Categoria</a></h2></li>
                 <li>
                 	<ul class="lista-categoria tamn refrescar-categoria">
                       	
@@ -52,6 +55,8 @@
             <input type="button"  name="btnTrabajo" id="btnTrabajo" value="Guardar" />
         </form>
     </aside>
+
+   <?php include 'inc/include/categorias_servicios.php';?>
     
     
     <script type="text/javascript">
@@ -62,10 +67,11 @@ $(document).ready(
 	{	
 		jQuery.validator.addClassRules("requerido", {required: true});
 
-		var idVehiculo = $("#idVehiculoCar").val();
+		//var idVehiculo = $("#idVehiculoCar").val();
 		var idOrden = $("#idOrden").val();
 
-		$("#relacion-orden").load("vehiculo/verRelacionCategoria",{idVehiculo:idVehiculo,idOrden:idOrden});
+		$("#relacion-orden").load("servicios/verRelacionCategoria",{idOrden:idOrden});
+		
 	}
 );
 
@@ -107,15 +113,15 @@ $(function(){
 				if($("#form_trabajoSolicitado").valid())
 				{	
 
-					$.post("index.php/vehiculo/agregarTrabajo",$("#form_trabajoSolicitado").serialize(),
+					$.post("index.php/servicios/agregarTrabajo",$("#form_trabajoSolicitado").serialize(),
 					function()
 					{
-						var idVehiculo = $("#idVehiculoCar").val();
+						//var idVehiculo = $("#idVehiculoCar").val();
 						var idOrden = $("#idOrden").val();
 
 						
 
-						$("#relacion-orden").load("vehiculo/verRelacionCategoria",{idVehiculo:idVehiculo,idOrden:idOrden},function(){
+						$("#relacion-orden").load("servicios/verRelacionCategoria",{idOrden:idOrden},function(){
 
 							$.post("index.php/vehiculo/actualizarMonto",$("#form_trabajoSolicitado").serialize(),function(data)
 								{	

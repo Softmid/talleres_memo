@@ -1,48 +1,60 @@
 <ul class="rel-categoria">
-	<?php
+	<?
 		$montoTotal = 0;
+
+		$suma_monto = $suma->row();
+			
 			
 			foreach ($rel->result() as $data) 
 			{	
-					if($data->sustituir==1){$sustituir="checked";$monto_sustituir="text";}else{$sustituir="";$monto_sustituir="hidden";}
-					if($data->reparar==1){$reparar="checked";$monto_reparar="text";}else{$reparar="";$monto_reparar="hidden";}
-					if($data->retoque==1){$retoque="checked";$monto_retoque="text";}else{$retoque="";$monto_retoque="hidden";}
-					if($data->estetica==1){$estetica="checked";$monto_estetica="text";}else{$estetica="";$monto_estetica="hidden";}
-					if($data->pintura==1){$pintura="checked";$monto_pintura="text";}else{$pintura="";$monto_pintura="hidden";}
-					if($data->mecanica==1){$mecanica="checked";$monto_mecanica="text";}else{$mecanica="";$monto_mecanica="hidden";}
-					if($data->otros==1){$otros="checked";$monto_otros="text";}else{$otros="";$monto_otros="hidden";}
 					
 					
-					
-					echo '<li class="result-categoria clear" data-id="'.$data->idRel.'">Concepto: '.$data->concepto.' <a class="eliminarRel" data-id="'.$data->idRel.'" title="Eliminar concepto"><i class="icon-remove-sign"></i></a>';
-					echo '
+					echo '<li class="result-categoria clear" data-id="'.$data->id.'">Concepto: '.$data->concepto.' <a class="eliminarRel" data-id="'.$data->id.'" title="Eliminar concepto"><i class="icon-remove-sign"></i></a>';
+					?>
 					<div class="cate_trabajo">
-						<aside>Sustituir <input class="tipo_trabajo" '.$sustituir.' data-idRel="'.$data->idRel.'" type="checkbox" data-nombre="sustituir" name="sustituir" value="1"><input class="monto" type="'.$monto_sustituir.'" name="monto_sustituir" data-id="'.$data->idRel.'" data-nombre="monto_sustituir" size="5" id="monto_sustituir'.$data->idRel.'" value="'.$data->monto_sustituir.'" style="margin: 4px 0px;
-width: 81%;"/></aside>
-						<aside>Reparar <input class="tipo_trabajo" '.$reparar.' data-idRel="'.$data->idRel.'" data-nombre="reparar" type="checkbox" name="reparar" value="1"><input class="monto" type="'.$monto_reparar.'" name="monto_reparar" size="5" data-id="'.$data->idRel.'" data-nombre="monto_reparar" id="monto_reparar'.$data->idRel.'" value="'.$data->monto_reparar.'" style="margin: 4px 0px;
-width: 81%;"/></aside>
-						<aside>Retoque <input class="tipo_trabajo" '.$retoque.' data-nombre="retoque" data-idRel="'.$data->idRel.'" type="checkbox" name="retoque" value="1"><input class="monto" type="'.$monto_retoque.'" name="monto_retoque" size="5" data-id="'.$data->idRel.'" data-nombre="monto_retoque" id="monto_retoque'.$data->idRel.'" value="'.$data->monto_retoque.'" style="margin: 4px 0px;
-width: 81%;"/></aside>
-						<aside>Pintura <input class="tipo_trabajo" '.$pintura.' data-idRel="'.$data->idRel.'" data-nombre="pintura" type="checkbox" name="pintura" value="1"><input class="monto" type="'.$monto_pintura.'" name="monto_pintura" size="5" data-id="'.$data->idRel.'" data-nombre="monto_pintura" id="monto_pintura'.$data->idRel.'" value="'.$data->monto_pintura.'" style="margin: 4px 0px;
-width: 81%;"/></aside>
-						<aside>Estetica <input class="tipo_trabajo" '.$estetica.' data-idRel="'.$data->idRel.'" data-nombre="estetica" type="checkbox" name="estetica" value="1"><input class="monto" type="'.$monto_estetica.'" name="monto_estetica" size="5" data-id="'.$data->idRel.'" data-nombre="monto_estetica" id="monto_estetica'.$data->idRel.'" value="'.$data->monto_estetica.'" style="margin: 4px 0px;
-width: 81%;"/></aside>
-						<aside>Mecanica <input class="tipo_trabajo" '.$mecanica.' data-idRel="'.$data->idRel.'" data-nombre="mecanica" type="checkbox" name="mecanica" value="1"><input class="monto" type="'.$monto_mecanica.'" name="monto_mecanica" size="5" data-id="'.$data->idRel.'" data-nombre="monto_mecanica" id="monto_mecanica'.$data->idRel.'" value="'.$data->monto_mecanica.'" style="margin: 4px 0px;
-width: 81%;"/></aside>
-						<aside>Otros <input class="tipo_trabajo" '.$otros.' data-idRel="'.$data->idRel.'" data-nombre="otros" type="checkbox" name="otros" value="1"><input class="monto" type="'.$monto_otros.'" name="monto_otros" size="5" data-id="'.$data->idRel.'" data-nombre="monto_otros" id="monto_otros'.$data->idRel.'" value="'.$data->monto_otros.'" style="margin: 4px 0px;
-width: 81%;"/></aside>
-					</div>
-					</li>';
+						
+						<? foreach ($categorias->result() as $data2){
+							
+							echo '<aside>'.$data2->nombre.'
+							<aside class="sub_servicio" id="subcategoria_servicio" data-id="'.$data2->idCategorias.'">';
 
-					$montoTotal = $montoTotal + $data->monto_sustituir + $data->monto_estetica + $data->monto_pintura + $data->monto_otros + $data->monto_retoque + $data->monto_reparar + $data->monto_mecanica;
+								$this->load->model('Procesos_Servicios');
+								$val['sub'] = $this->Procesos_Servicios->subCategorias($data2->idCategorias); 	
+								 		
+										echo '<select name="subcategoria_servicio" id="subcat_servicio'.$data2->idCategorias.$data->id.'" class="subcat_servicio" data-idCat="'.$data2->idCategorias.'" data-idOrden="'.$data->idOrden.'" data-servicio="'.$data->id.'">';
+										echo '<option value="0"></option>';
+										
+										foreach($val['sub']->result() as $data3){
+
+										 echo '<option value="'.$data3->idSubcategorias.'">'.$data3->nombre.'</option>';
+
+
+										}// subcategorias
+				
+										echo '</select>';						
+								
+							echo '</aside>
+							<div id="monto_servicios" >
+
+									<input class="monto" type="text" name="monto" size="5" id="monto'.$data2->idCategorias.$data->id.'" value=""  data-idCat="'.$data2->idCategorias.'" data-idOrden="'.$data->idOrden.'" data-servicio="'.$data->id.'" />
+								
+							</div>
+							</aside>';
+						} ?>
+					</div>
+					</li>
+
+			<?
+
+					//$montoTotal = $montoTotal + $data->monto_sustituir + $data->monto_estetica + $data->monto_pintura + $data->monto_otros + $data->monto_retoque + $data->monto_reparar + $data->monto_mecanica;
 
 			}
 			
 		
 
 		echo '<li class="titulo-categoria">Monto Total</li>';
-		echo '<li class="result-categoria">Monto Total: $'.$montoTotal.' </li>';
-		echo '<input type="hidden" name="montoTotal" id="montoTotal" value="'.$montoTotal.'"/>'
+		echo '<li class="result-categoria" id="monto_total">Monto Total: $'.$suma_monto->monto_total.' </li>';
+		
 	?>
 </ul>
 
@@ -50,20 +62,77 @@ width: 81%;"/></aside>
 
 
 <script type="text/javascript">
-	$(document).ready(function(){
 		
-		$(".eliminarRel").click(function()
-		{	
-			var idRel = $(this).attr("data-id");
+	
+
+	$(document).ready(function(){
+
+			
 			
 
-			$.post("categorias/eliminarRelacion",{idRel:idRel},
+
+			$(".subcat_servicio").change(function(){
+
+				var id_categoria = $(this).attr("data-idCat");
+				var id_servicio = $(this).attr("data-servicio");
+				var id_sub_categoria = $("#subcat_servicio"+id_categoria+id_servicio).val();
+				var id_orden = $(this).attr("data-idOrden");
+				
+
+				//alert(id_categoria+"-"+id_sub_categoria+"-"+id_orden+"-"+id_servicio);
+			
+				$.post("servicios/ver_monto/"+id_categoria+"/"+id_sub_categoria+"/"+id_orden+"/"+id_servicio,function(data){
+
+						var obj = $.parseJSON(data);
+						
+						$("#monto"+id_categoria+id_servicio).val(obj.monto);
+				
+				});
+			});
+
+
+			
+			$(".monto").change(function(){
+
+				var id_categoria = $(this).attr("data-idCat");
+				var id_servicio = $(this).attr("data-servicio");
+				var id_sub_categoria = $("#subcat_servicio"+id_categoria+id_servicio).val();
+				var id_orden = $(this).attr("data-idOrden");
+				var monto = $(this).val();
+
+				//alert(id_categoria+"-"+id_sub_categoria+"-"+id_orden+"-"+id_servicio);
+
+				$.post("servicios/actualizar_monto/"+id_categoria+"/"+id_sub_categoria+"/"+id_orden+"/"+id_servicio+"/"+monto,function(){
+
+					$.post("servicios/actualizar_monto_orden/"+id_orden,function(data)
+						{	
+
+							var obj = $.parseJSON(data);
+
+							$("#monto_total").html("Monto Total: "+obj.monto_total);
+
+						});
+				
+				});
+				
+			});
+
+
+		
+	
+ 
+		$(".eliminarRel").click(function()
+		{	
+			var idServicio = $(this).attr("data-id");
+			
+
+			$.post("servicios/eliminar_servicios/"+idServicio,
 				function()
 				{
-					var idVehiculo = $("#idVehiculoCar").val();
+					
 					var idOrden = $("#idOrden").val();
 
-					$("#relacion-orden").load("vehiculo/verRelacionCategoria",{idVehiculo:idVehiculo,idOrden:idOrden});
+					$("#relacion-orden").load("servicios/verRelacionCategoria",{idOrden:idOrden});
 					
 				}
 			);
@@ -73,20 +142,6 @@ width: 81%;"/></aside>
 	});
 
 	$(function(){
-
-
-		$('.monto').change(function()
-		{	
-			var id = $(this).attr('data-id');
-			var nombre = $(this).attr('data-nombre');
-			var valor = $('#'+nombre+id).val();
-
-
-			$.post("vehiculo/agregar_montoCorbata",{nombre:nombre,id:id,valor:valor});
-			
-
-		});
-
 
 		$('.tipo_trabajo').click(function(){
 				var marcado = $(this).is(":checked");
