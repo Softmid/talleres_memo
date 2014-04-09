@@ -35,7 +35,7 @@
 		
         <form method="post" accept-charset="utf-8" id="form_trabajoSolicitado">
             <ul id="datos">
-            	<li><h2>Trabajo Solicitado<span>>></span><a class="link-abrir btn-categoria-color" data-open="form_agregarCategorias" data-link="boton-categoria" data-width="800">Nueva Categoria</a></h2></li>
+            	<li><h2>Trabajo Solicitado<span>>></span><a class="link-abrir boton-categoria btn-categoria-color" data-open="form_agregarCategorias" data-link="boton-categoria" data-width="800">Nueva Categoria</a></h2></li>
                 <li>
                 	<ul class="lista-categoria tamn refrescar-categoria">
                       	

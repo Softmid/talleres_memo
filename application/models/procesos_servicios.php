@@ -75,8 +75,8 @@ class Procesos_Servicios extends CI_Model {
 	}
 	
 	function subCategorias($id)
-	{
-		$query = $this->db->query("SELECT * from subcategorias_servicios where idCategoria = '$id'");
+	{ 
+		$query = $this->db->query("SELECT * from subcategorias_servicios where idCategoria = '$id' AND visible='1'");
 		return $query;
 	}
 
@@ -98,7 +98,7 @@ class Procesos_Servicios extends CI_Model {
 	
 	function eliminarCategoria($data) 
 	{	
-		$query = $this->db->query("select * from servicios where id_categoria = ".$data['idCategorias']."");
+		$query = $this->db->query("select * from rel_monto_servicios where id_categoria = ".$data['idCategorias']."");
 		if($query->num_rows() > 0)
 		{ 	
 			$update = array(
@@ -119,7 +119,7 @@ class Procesos_Servicios extends CI_Model {
 	
 	function eliminarSubCategoria($data) 
 	{	
-		$query = $this->db->query("select * from servicios where id_subcategoria = ".$data['idSubcategorias']."");
+		$query = $this->db->query("select * from rel_monto_servicios where id_subcategoria = ".$data['idSubcategorias']."");
 		if($query->num_rows() > 0)
 		{	
 			$update = array(
