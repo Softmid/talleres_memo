@@ -3,7 +3,7 @@
 		$vehiculoResult = $vehiculo->row();
 ?>
 
-<? foreach ($categoria->result() as $data) 
+<? foreach ($categorias->result() as $data_cat) 
 {   ?>
 
 <article class="imprecionOrden clear">
@@ -63,32 +63,58 @@
 		<table class="corbata">
         	<thead>
                 <tr>
-                    <th width="44%"><? echo $data->nombre; ?></th>
-                    <th width="8%">Sustituir</th>
-                    <th width="8%">Reparar</th>
-                    <th width="8%">Ret. Pintura</th>
-                    <th width="8%">Pintura</th>  
-                    <th width="8%">Estetica</th>
-                    <th width="8%">TOT</th>                    
+
+                    <th width="44%"><? echo $data_cat->nombre; ?></th>
+                    <?
+                        $this->load->model('Procesos_Servicios');
+                        $data_result['sub_cat'] = $this->Procesos_Servicios->subCategorias($data_cat->idCategorias);
+
+                        foreach ($data_result['sub_cat']->result() as $data_sub) {
+                            echo '<th width="44%">'.$data_sub->nombre.'</th>';
+                        }
+                    ?>
+                                   
                 </tr>
 
         
             </thead>
-            <? foreach ($rel_trabajo->result() as $trabajo) {
+            <?
+                    foreach ($servicios->result() as $data) 
+                    {
+                        echo '<tr>';
+                            
+                            echo '<td>'.$data->concepto.'</td>';
+                            
+                            foreach ($data_result['sub_cat']->result() as $data2) 
+                            {
+                               
+                                $query['sub'] = $this->Procesos_Servicios->monto_subcategoria($data_cat->idCategorias,$ordenResult->idOrdenes,$data->id,$data2->idSubcategorias);
 
-             ?>
-            <tbody>
-            	<tr>
-            		<td><? echo $trabajo->concepto; ?></td>
-            		<td><? if($trabajo->sustituir==1) echo "x"; ?></td>
-            		<td><? if($trabajo->reparar==1) echo "x"; ?></td>
-            		<td><? if($trabajo->retoque==1) echo "x"; ?></td>
-            		<td><? if($trabajo->pintura==1) echo "x"; ?></td>
-            		<td><? if($trabajo->estetica==1) echo "x"; ?></td>
-            		<td><? if($trabajo->otros==1) echo "x"; ?></td>
-            	</tr>
-            </tbody>
-            <? }// foreach trabajo ?>
+                                $var = $query['sub']->row();
+
+                                if($query['sub']->num_rows()>0)
+
+                                {
+                                    if($var->monto_subcat>0)
+                                    {
+                                        echo '<td width="8%">X</td>';
+                                        
+                                    }
+                                    else
+                                    {
+                                        echo '<td width="8%"></td>';
+                                    }
+                                }
+                                else
+                                {
+                                    echo '<td width="8%"></td>';
+                                }
+
+                            }//categorias
+
+                        echo '</tr>';
+                    }//categorias
+                    ?>
         </table>
 
         <table class="porcentaje">
