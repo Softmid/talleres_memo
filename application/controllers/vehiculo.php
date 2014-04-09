@@ -544,11 +544,11 @@ class Vehiculo extends CI_Controller {
 		$this->load->model('Procesos_Orden');
 		$data['orden'] = $this->Procesos_Orden->verOrden($idOrden);
 
-		$this->load->model('Procesos_relacionCategorias');
-		$data['categorias'] = $this->Procesos_relacionCategorias->verCategorias($id,$idOrden);
+		$this->load->model('Procesos_Servicios');
+		$data['categorias'] = $this->Procesos_Servicios->categorias();
+		$data['servicios'] = $this->Procesos_Servicios->ver($idOrden);
 		
-		$this->load->model('Procesos_Categorias');
-		$data['rel_trabajo'] = $this->Procesos_Categorias->rel_categoria($idOrden);
+		
 		$this->load->view("site_header");
 		$this->load->view("impresionOrden", $data);
 	}

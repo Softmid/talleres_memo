@@ -25,6 +25,12 @@ class Procesos_Servicios extends CI_Model {
 		return $query;
 	}
 
+	function suma_monto_categoria($cat='',$orden='',$servicio='')
+	{
+		$query = $this->db->query("SELECT SUM(monto) AS monto_categoria FROM rel_monto_servicios WHERE id_categoria = '$cat' AND id_servicio = '$servicio' AND id_orden = '$orden'");
+		return $query;
+	}
+
 	function agregar_monto_servicio($data)
 	{
 		$this->db->insert('rel_monto_servicios', $data);

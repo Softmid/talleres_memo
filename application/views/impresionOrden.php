@@ -54,90 +54,7 @@
 			</li>
 		</ul>
 	</section>
-	<section class="caracteristicas clear">
-    	
-            <?php
-				$count=1;
-				foreach($caracteristicas->result() as $data)
-				{
-					if($count == 1 and $data->concepto == 'Unidad de Luces')
-					{
-						$caracteristicas1 = true;
-						echo '
-						<ul class="lista-caracteristicas uno">
-							<li class="titulo">EXTERIOR</li>
-						';
-
-					}
-
-					if($count == 1 and $data->concepto == 'Gato')
-					{
-						$caracteristicas2 = true;
-						echo '
-						<ul class="lista-caracteristicas dos">
-							<li class="titulo">ACCESORIOS</li>
-						';
-
-					}
-
-					if($count == 1 and $data->concepto == 'Instrumentos de Tablero')
-					{
-						$caracteristicas3 = true;
-						echo '
-						<ul class="lista-caracteristicas tres">
-							<li class="titulo">INTERIOR</li>
-						';
-
-					}
-
-					if($count == 1 and $data->concepto == 'Claxon')
-					{
-						$caracteristicas3 = true;
-						echo '
-						<ul class="lista-caracteristicas cuatro">
-							<li class="titulo">COMPONENTES MECANICOS</li>
-						';
-
-					}
-
-					if($data->checked == true){
-						
-						echo '<li>'.$data->concepto.'<span><i class="icon-check"> SI </i><i class="icon-check-empty"> NO </i></span></li>';	
-					}
-					else{
-						echo '<li>'.$data->concepto.'<span><i class="icon-check-empty"> SI </i><i class="icon-check"> NO </i></li></span></li>';	
-					}
-
-					if($data->concepto == 'Bocina de Claxon')
-					{
-						echo '</ul>';
-						$count = 0;
-					}
-
-					if($data->concepto == 'Extinguidor')
-					{
-						echo '</ul>';
-						$count = 0;
-					}
-
-					if($data->concepto == 'Encendedor')
-					{
-						echo '</ul>';
-						$count = 0;
-					}
-
-					if($data->concepto == 'Batería(MCA)')
-					{
-						echo '</ul>';
-						$count = 0;
-					}
-					
-					$count++;
-				}
-            ?>
-        </ul>
-        <img src="images/autos/impresion.png" class="imagen-caracteristica">        
-	</section>
+	
 	
 		<section class="tabla-corbata clear">
 
@@ -149,36 +66,50 @@
 				<table class="corbata">
         	<thead>
                 <tr>
-                    <th width="44%">Concepto</th>
-                    <th width="8%">Sustituir</th>
-                    <th width="8%">Reparar</th>
-                    <th width="8%">Ret. Pintura</th>
-                    <th width="8%">Pintura</th>  
-                    <th width="8%">Estetica</th>
-                    <th width="8%">TOT</th>                    
+                	<th width="44%">Concepto</th>
+                	<? 
+                	foreach ($categorias->result() as $data) 
+                	{
+                		echo '<th width="8%" id="categoria" data-id="'.$data->idCategorias.'">'.$data->nombre.'</th>';
+
+                	}//categorias
+                    ?>         
                 </tr>
 
         
             </thead>
-            <? foreach ($rel_trabajo->result() as $trabajo) {
+           <tbody>
+           			<?
+           			foreach ($servicios->result() as $data) 
+                	{
+		           		echo '<tr>';
+		           			
+		            		echo '<td>'.$data->concepto.'</td>';
+							
+							foreach ($categorias->result() as $data2) 
+							{
+								$this->load->model('Procesos_Servicios');
+								$data_result['suma'] = $this->Procesos_Servicios->suma_monto_categoria($data2->idCategorias,$ordenResult->idOrdenes,$data->id);
 
-             ?>
-            <tbody>
-            	<tr>
-            		<td><? echo $trabajo->concepto; ?></td>
-            		<td><? if($trabajo->sustituir==1) echo $trabajo->monto_sustituir; else { echo "0.00";} ?></td>
-            		<td><? if($trabajo->reparar==1) echo $trabajo->monto_reparar; else { echo "0.00";} ?></td>
-            		<td><? if($trabajo->retoque==1) echo $trabajo->monto_retoque; else { echo "0.00";} ?></td>
-            		<td><? if($trabajo->pintura==1) echo $trabajo->monto_pintura; else { echo "0.00";} ?></td>
-            		<td><? if($trabajo->estetica==1) echo $trabajo->monto_estetica; else { echo "0.00";} ?></td>
-            		<td><? if($trabajo->otros==1) echo $trabajo->monto_otros; else { echo "0.00";} ?></td>
-            	</tr>
-            </tbody>
-			<?
+								$suma = $data_result['suma']->row();
 
-            $subTotal += $trabajo->monto_sustituir + $trabajo->monto_estetica + $trabajo->monto_pintura + $trabajo->monto_otros + $trabajo->monto_retoque + $trabajo->monto_reparar;
+								if($suma->monto_categoria>0)
+								{
+									echo '<td width="8%">'.$suma->monto_categoria.'</td>';
+									$subTotal += $suma->monto_categoria;
+								}
+								else
+								{
+									echo '<td width="8%">0.00</td>';
+								}
+								
 
-            }// foreach trabajo ?>
+							}//categorias
+
+		           		echo '</tr>';
+           			}//categorias
+                    ?>
+           </tbody>
         </table>
 
 
