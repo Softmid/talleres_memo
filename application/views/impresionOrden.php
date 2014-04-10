@@ -54,6 +54,91 @@
 			</li>
 		</ul>
 	</section>
+
+		<section class="caracteristicas clear">
+    	
+            <?php
+				$count=1;
+				foreach($caracteristicas->result() as $data)
+				{
+					if($count == 1 and $data->concepto == 'Unidad de Luces')
+					{
+						$caracteristicas1 = true;
+						echo '
+						<ul class="lista-caracteristicas uno">
+							<li class="titulo">EXTERIOR</li>
+						';
+
+					}
+
+					if($count == 1 and $data->concepto == 'Gato')
+					{
+						$caracteristicas2 = true;
+						echo '
+						<ul class="lista-caracteristicas dos">
+							<li class="titulo">ACCESORIOS</li>
+						';
+
+					}
+
+					if($count == 1 and $data->concepto == 'Instrumentos de Tablero')
+					{
+						$caracteristicas3 = true;
+						echo '
+						<ul class="lista-caracteristicas tres">
+							<li class="titulo">INTERIOR</li>
+						';
+
+					}
+
+					if($count == 1 and $data->concepto == 'Claxon')
+					{
+						$caracteristicas3 = true;
+						echo '
+						<ul class="lista-caracteristicas cuatro">
+							<li class="titulo">COMPONENTES MECANICOS</li>
+						';
+
+					}
+
+					if($data->checked == true){
+						
+						echo '<li>'.$data->concepto.'<span><i class="icon-check"> SI </i><i class="icon-check-empty"> NO </i></span></li>';	
+					}
+					else{
+						echo '<li>'.$data->concepto.'<span><i class="icon-check-empty"> SI </i><i class="icon-check"> NO </i></li></span></li>';	
+					}
+
+					if($data->concepto == 'Bocina de Claxon')
+					{
+						echo '</ul>';
+						$count = 0;
+					}
+
+					if($data->concepto == 'Extinguidor')
+					{
+						echo '</ul>';
+						$count = 0;
+					}
+
+					if($data->concepto == 'Encendedor')
+					{
+						echo '</ul>';
+						$count = 0;
+					}
+
+					if($data->concepto == 'Batería(MCA)')
+					{
+						echo '</ul>';
+						$count = 0;
+					}
+					
+					$count++;
+				}
+            ?>
+        </ul>
+        <img src="images/autos/impresion.png" class="imagen-caracteristica">        
+	</section>
 	
 	
 		<section class="tabla-corbata clear">
