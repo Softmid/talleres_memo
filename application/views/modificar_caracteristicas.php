@@ -123,15 +123,9 @@ $(function(){
 
 						$("#relacion-orden").load("servicios/verRelacionCategoria",{idOrden:idOrden},function(){
 
-							$.post("index.php/vehiculo/actualizarMonto",$("#form_trabajoSolicitado").serialize(),function(data)
-								{	
-									$(".divCategorias p").remove();
-									$(".cantInput").val(0);
-									$("#form_trabajoSolicitado").reset();
-
-								});
-
-							
+							$(".divCategorias p").remove();
+							$(".cantInput").val(0);
+							$("#form_trabajoSolicitado").reset();
 
 						});
 						
