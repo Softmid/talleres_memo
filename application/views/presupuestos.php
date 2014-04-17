@@ -43,7 +43,7 @@
 
                     </tr>
                      <tr class="hijo" data-id="<? echo $vehiculo->idOrdenes; ?>" style="display:none">
-                        <td align="center"><a class="link-ajax link-boton-modificar link-boton-menu" data-open="vista-modificar-carro" data-link="modificar-vehiculo" data-ajax="form-modificar-carro" data-url="index.php/vehiculo/modificarVehiculo" data-id="<?php echo $vehiculo->idVehiculo?>" data-idOrden="<?php echo $vehiculo->idOrdenes?>" ><i class="icon-cogs"></i>Modificar</a></td>
+                        <td align="center"><a href="index.php/vehiculo/modificarVehiculo/<?php echo $vehiculo->idVehiculo?>/<?php echo $vehiculo->idOrdenes?>" class="link-boton-modificar link-boton-menu" data-open="vista-modificar-carro" ><i class="icon-cogs"></i>Modificar</a></td>
                        <td align="center"><a class=" link-boton-menu" href="index.php/presupuestos/imprecionOrdenPresupuesto/<?php echo $vehiculo->idVehiculo?>/<?php echo $vehiculo->idOrdenes?>" data-open="" data-url="" data-id="<?php echo $vehiculo->idVehiculo;?>"><i class="icon-print"></i>Imprimir</a></td>
                        <td align="center"><a class="btnMenu link-boton-menu btnAutorizar" data-id="<? echo $vehiculo->idVehiculo; ?>" data-idOrden="<? echo $vehiculo->idOrdenes; ?>"><i class="icon-check menu"></i>Autorizar</a></td> 
                        <td align="center"><a class="btnMenu link-boton-menu btnCancelar" data-id="<? echo $vehiculo->idVehiculo; ?>" data-idOrden="<? echo $vehiculo->idOrdenes; ?>"><i class="icon-check menu"></i>Cancelar</a></td>                 
