@@ -54,7 +54,8 @@
 			</li>
 		</ul>
 	</section>
-	<!-- <section class="caracteristicas clear">
+
+		<section class="caracteristicas clear">
     	
             <?php
 				$count=1;
@@ -137,8 +138,10 @@
             ?>
         </ul>
         <img src="images/autos/impresion.png" class="imagen-caracteristica">        
-	</section> -->
-	<section class="tabla-corbata clear">
+	</section>
+	
+	
+		<section class="tabla-corbata clear">
 
 			<?php
 				$subTotal = 0;
@@ -148,36 +151,50 @@
 				<table class="corbata">
         	<thead>
                 <tr>
-                    <th width="44%">Concepto</th>
-                    <th width="8%">Sustituir</th>
-                    <th width="8%">Reparar</th>
-                    <th width="8%">Ret. Pintura</th>
-                    <th width="8%">Pintura</th>  
-                    <th width="8%">Estetica</th>
-                    <th width="8%">TOT</th>                    
+                	<th width="44%">Concepto</th>
+                	<? 
+                	foreach ($categorias->result() as $data) 
+                	{
+                		echo '<th width="8%" id="categoria" data-id="'.$data->idCategorias.'">'.$data->nombre.'</th>';
+
+                	}//categorias
+                    ?>         
                 </tr>
 
         
             </thead>
-            <? foreach ($rel_trabajo->result() as $trabajo) {
+           <tbody>
+           			<?
+           			foreach ($servicios->result() as $data) 
+                	{
+		           		echo '<tr>';
+		           			
+		            		echo '<td>'.$data->concepto.'</td>';
+							
+							foreach ($categorias->result() as $data2) 
+							{
+								$this->load->model('Procesos_Servicios');
+								$data_result['suma'] = $this->Procesos_Servicios->suma_monto_categoria($data2->idCategorias,$ordenResult->idOrdenes,$data->id);
 
-             ?>
-            <tbody>
-            	<tr>
-            		<td><? echo $trabajo->concepto; ?></td>
-            		<td><? if($trabajo->sustituir==1) echo $trabajo->monto_sustituir; else { echo "0.00";} ?></td>
-            		<td><? if($trabajo->reparar==1) echo $trabajo->monto_reparar; else { echo "0.00";} ?></td>
-            		<td><? if($trabajo->retoque==1) echo $trabajo->monto_retoque; else { echo "0.00";} ?></td>
-            		<td><? if($trabajo->pintura==1) echo $trabajo->monto_pintura; else { echo "0.00";} ?></td>
-            		<td><? if($trabajo->estetica==1) echo $trabajo->monto_estetica; else { echo "0.00";} ?></td>
-            		<td><? if($trabajo->otros==1) echo $trabajo->monto_otros; else { echo "0.00";} ?></td>
-            	</tr>
-            </tbody>
-			<?
+								$suma = $data_result['suma']->row();
 
-            $subTotal += $trabajo->monto_sustituir + $trabajo->monto_estetica + $trabajo->monto_pintura + $trabajo->monto_otros + $trabajo->monto_retoque + $trabajo->monto_reparar;
+								if($suma->monto_categoria>0)
+								{
+									echo '<td width="8%">'.$suma->monto_categoria.'</td>';
+									$subTotal += $suma->monto_categoria;
+								}
+								else
+								{
+									echo '<td width="8%">0.00</td>';
+								}
+								
 
-            }// foreach trabajo ?>
+							}//categorias
+
+		           		echo '</tr>';
+           			}//categorias
+                    ?>
+           </tbody>
         </table>
 
 
@@ -188,10 +205,10 @@
 					$subTotal = 0;
 				
 			?>
-	</section>
+	</section>		
 	<section class="finalImpresion">
 		<p id="datosImpresion">
-			El siguiente presupuesto es vigente durante los primeros 30 días después de su expedición.<br>
+			 El siguiente presupuesto es vigente durante los primeros 30 días después de su expedición.<br>
 			o	Después de los 30 días los costos están sujetos a cambio sin previo aviso.<br>
 			 <span id="center">EL CONSUMIDOR</span>
 			 <span id="acepto">ACEPTO</span>
@@ -199,9 +216,9 @@
 		</p>
 		<aside id="total">
 			<?php
-				echo '<aside class="subtotal">Sub-Total <span>$ '.$Total.'</span></aside>';
-				echo '<aside class="subtotal">16% IVA <span id="iva">$ '.($Total * .16).'</span></aside>';
-				echo '<aside class="subtotal">Total <span id="sumaTotal">$ '.($Total * 1.16).'</span></aside>';
+				echo '<aside class="subtotal">Sub-Total <span>$ '.number_format($Total, 2).'</span></aside>';
+				echo '<aside class="subtotal">16% IVA <span id="iva">$ '.number_format(($Total * .16), 2).'</span></aside>';
+				echo '<aside class="subtotal">Total <span id="sumaTotal">$ '.number_format(($Total * 1.16), 2).'</span></aside>';
 			?>
 		</aside>
 	</section>

@@ -222,21 +222,24 @@ class Presupuestos extends CI_Controller {
 		
 	}
 
-	function imprecionOrdenPresupuesto()
+	function imprecionOrdenPresupuesto($id = '', $idOrden = '')
 	{
-		$id = $this->uri->segment(3);
-		$idOrden = $this->uri->segment(4);
+	
 		$this->load->model('Procesos_Vehiculo');
 		$data['vehiculo'] = $this->Procesos_Vehiculo->verVehiculoMod($id);
 		$this->load->model('Procesos_Orden');
 		$data['orden'] = $this->Procesos_Orden->verOrden($idOrden);
+
 		$this->load->model('Procesos_Caracteristicas');
 		$data['caracteristicas'] = $this->Procesos_Caracteristicas->caracteristicasRelacion($id,$idOrden);
-		$this->load->model('Procesos_relacionCategorias');
-		$data['categorias'] = $this->Procesos_relacionCategorias->verCategorias($id,$idOrden);
-		$data['rel'] = $this->Procesos_relacionCategorias->ver($id,$idOrden);
-		$this->load->model('Procesos_Categorias');
-		$data['rel_trabajo'] = $this->Procesos_Categorias->rel_categoria($idOrden);
+
+
+
+		$this->load->model('Procesos_Servicios');
+		$data['categorias'] = $this->Procesos_Servicios->categorias();
+		$data['servicios'] = $this->Procesos_Servicios->ver($idOrden);
+		
+		
 		$this->load->view("site_header");
 		$this->load->view("imprecionOrdenPresupuesto", $data);
 	}
