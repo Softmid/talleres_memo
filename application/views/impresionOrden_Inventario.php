@@ -43,6 +43,7 @@
 				<p class="sschico"><span>Color: </span><?php echo $vehiculoResult->color?></p>
 				<p class="sschico"><span>Placa: </span><?php echo $vehiculoResult->placas?></p>
 			</li>
+			
 			<li class="clear">
 				<p class="grande"><span>Nº de VIN: </span><?php echo $vehiculoResult->num_VIN?></p>
 			</li>
@@ -151,7 +152,7 @@
 	</section>
 	
 	
-		<section class="tabla-corbata clear">
+	<section class="tabla-corbata clear">
 
 			<?php
 				$subTotal = 0;
@@ -234,7 +235,7 @@
 				echo '<aside class="subtotal">Total <span id="sumaTotal">$ '.number_format(($Total * 1.16), 2).'</span></aside>';
 			?>
 		</aside>
-	</section>
+	</section> 
 </article>
 
 <style type="text/css" media="print">

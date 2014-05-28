@@ -22,10 +22,10 @@
 	                <option value="qualitas">Qualitas</option>
 	            </select>
 	        </li>
-	        <li><input type="text" name="dedusible" value="" id="dedusible" placeholder="Desdusible"/></li>
-	        <li><input type="text" name="fechaSiniestro" value="" id="fechaSiniestro" placeholder="Fecha del Siniestro"/></li>
-	        <li><input type="text" name="numeroPoliza" value="" id="numeroPoliza" placeholder="Numero de Poliza"/></li>
-	        <li><input type="text" name="numeroReporte" value="" id="numeroReporte" placeholder="Numero de Reporte del Siniestro"/></li>
+	        <li><input type="text" name="dedusible" value="<?php echo $orden->dedusible;?>" id="dedusible" placeholder="Desdusible"/></li>
+	        <li><input type="text" name="fechaSiniestro" value="<?php echo $orden->fechaSiniestro;?>" id="fechaSiniestro" placeholder="Fecha del Siniestro"/></li>
+	        <li><input type="text" name="numeroPoliza" value="<?php echo $orden->numeroPoliza;?>" id="numeroPoliza" placeholder="Numero de Poliza"/></li>
+	        <li><input type="text" name="numeroReporte" value="<?php echo $orden->numeroReporte;?>" id="numeroReporte" placeholder="Numero de Reporte del Siniestro"/></li>
             
             <?
 
@@ -192,12 +192,8 @@ $(document).ready(
 			$.post("index.php/vehiculo/modVehiculo",$("#form_modVehiculo").serialize(),
 			function(data)
 			{
-				$('#btnFormVehiculo').after(function () {
-					$('#cuadro_modificar').append(data);
-					$('#cuadro_modificar').dialog('open');
-					return false;
-				});
-				$("#form_vehiculo").reset();	
+				alert("Vehiculo Actualizado")
+					
 			}
 			);
 		}

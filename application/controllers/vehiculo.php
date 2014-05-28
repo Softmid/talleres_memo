@@ -558,6 +558,27 @@ class Vehiculo extends CI_Controller {
 		$this->load->view("impresionOrden", $data);
 	}
 
+	function impresionOrden_Inventario($id = '', $idOrden = '')
+	{
+		$this->load->model('Procesos_Vehiculo');
+		$data['vehiculo'] = $this->Procesos_Vehiculo->verVehiculoMod($id);
+		$this->load->model('Procesos_Orden');
+		$data['orden'] = $this->Procesos_Orden->verOrden($idOrden);
+
+		$this->load->model('Procesos_Caracteristicas');
+		$data['caracteristicas'] = $this->Procesos_Caracteristicas->caracteristicasRelacion($id,$idOrden);
+
+
+
+		$this->load->model('Procesos_Servicios');
+		$data['categorias'] = $this->Procesos_Servicios->categorias();
+		$data['servicios'] = $this->Procesos_Servicios->ver($idOrden);
+		
+		
+		$this->load->view("site_header");
+		$this->load->view("impresionOrden_Inventario", $data);
+	}
+
 	function  impresionCorbata($id = '', $idOrden = '')
 	{
 		$this->load->model('Procesos_Vehiculo');
