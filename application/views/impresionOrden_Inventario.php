@@ -152,7 +152,19 @@
 	</section>
 	
 	
-	
+	<section class="finalImpresion">
+		<p id="datosImpresion">
+			 GARANTIZO Y ASEGURO QUE SOY EL DUEÑO O ESTOY  AUTORIZADO PARA ORDENAR ESTA REPARACION, CON LA PRESENTE AUTORIZO<br>
+			 EL TRABAJO DESCRITO JUNTO CON LAS PIEZAS Y/O MATERIALES  NECESARIOS PARA EFECTUARLOS Y AUTORIZO A UD. O AL ASESOR <br>
+			 DE SERVICIO A OPERAR EL VEHICULO  ARRIBA ESPECIFICADO EN LAS CALLES PARA PROBARLO Y REVISARLO.<br>
+			 DEBO Y PAGARE INCONDICIONALMENTE Y DE CONTADO LA CANTIDAD ARRIBA DESCRITA POR LA REPARACION DE MI AUTOMOVIL.<br>
+			 La empresa NO se hace responsable por objetos olvidados en el interior de su automóvil, se recomienda depositarlo en la oficina.<br>
+			 <span id="center">EL CONSUMIDOR</span>
+			 <span id="acepto">ACEPTO</span>
+			 <span id="firma">Firma de aceptación</span>
+		</p>
+		
+	</section> 
 </article>
 
 <style type="text/css" media="print">
