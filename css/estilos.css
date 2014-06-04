@@ -19,6 +19,7 @@ body
 	width: 30%;
 }
 
+
 ::selection
 {
 	background-color: #fff;
@@ -1924,3 +1925,6 @@ table
 	.btn-categoria-color:focus {
 		background-color: #4A9CC2;
 	}
+#tablaPrincipal {
+    
+}

@@ -1,6 +1,7 @@
 <?php 
 		$ordenResult = $orden->row();
 		$vehiculoResult = $vehiculo->row();
+        $this->load->model('Procesos_Servicios');
 ?>
 
 <article class="imprecionOrden clear">
@@ -63,9 +64,30 @@
                                     <th width="44%">Vehiculo</th>
                                     <? 
                                     foreach ($categorias->result() as $data) 
-                                    {
-                                        echo '<th width="8%" id="categoria" data-id="'.$data->idCategorias.'">'.$data->nombre.'</th>';
+                                    {   
+                                        
+                                        if($data->nombre=="Pintura"||$data->nombre=="pintura")
+                                        {
+                                            //echo '<th width="8%" id="categoria" data-id="'.$data->idCategorias.'">'.$data->nombre.'</th>';
+                                            
+                                            $data_result['sub_cat_nombrePintura'] = $this->Procesos_Servicios->subCategorias($data->idCategorias);
+                                            
+                                           
+                                            
+                                            foreach($data_result['sub_cat_nombrePintura']->result() as $data_nombrePintura)
+                                            {   
+                                                
+                                                echo '<th width="8%" id="categoria" data-id="'.$data_nombrePintura->idSubcategorias.'">'.$data_nombrePintura->nombre.'</th>';
+                                            }
+                                            
+                                                                                  
+                                        }
+                                        else
+                                        {
+                                             echo '<th width="8%" id="categoria" data-id="'.$data->idCategorias.'">'.$data->nombre.'</th>';
 
+                                        }
+                                       
                                     }//categorias
                                     ?>         
                                 </tr>
@@ -82,20 +104,63 @@
                                             
                                             foreach ($categorias->result() as $data2) 
                                             {
-                                                $this->load->model('Procesos_Servicios');
-                                                $data_result['suma'] = $this->Procesos_Servicios->suma_monto_categoria($data2->idCategorias,$ordenResult->idOrdenes,$data->id);
+                                                if($data2->nombre=="Pintura"||$data2->nombre=="pintura")
+                                                {   
+                                                    
+                                                    
+                                                    $data_result['sub_cat_pintura'] = $this->Procesos_Servicios->subCategorias($data2->idCategorias);
+                                                    
+                                                     foreach ($data_result['sub_cat_pintura']->result() as $data_sub) 
+                                                    {
+                                                    
+                                                    
+                                                    $query['sub'] = $this->Procesos_Servicios->monto_subcategoria($data2->idCategorias,$ordenResult->idOrdenes,$data->id,$data_sub->idSubcategorias);
+                                                    
+                                                    $var = $query['sub']->row();
 
-                                                $suma = $data_result['suma']->row();
+                                                    if($query['sub']->num_rows()>0)
 
-                                                if($suma->monto_categoria>0)
-                                                {
-                                                    echo '<td width="8%">X</td>';
+                                                    {   
+                                                                                                            
+                                                        if($var->monto_subcat>0)
+                                                        {
+                                                            echo '<td width="8%">X</td>';
+
+                                                        }
+                                                        else
+                                                        {
+                                                            echo '<td width="8%"></td>';
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        echo '<td width="8%"></td>';
+                                                    }
+                                                    
+                                                    }//foreach subcategorias de pintura    
+
                                                     
                                                 }
+                                                
                                                 else
                                                 {
-                                                    echo '<td width="8%"></td>';
+                                                
+                                                    $data_result['suma'] = $this->Procesos_Servicios->suma_monto_categoria($data2->idCategorias,$ordenResult->idOrdenes,$data->id);                          
+                                                    $suma = $data_result['suma']->row();
+
+                                                    if($suma->monto_categoria>0)
+                                                    {
+                                                        echo '<td width="8%">X</td>';
+
+                                                    }
+                                                    else
+                                                    {
+                                                        echo '<td width="8%"></td>';
+                                                    }
                                                 }
+                                               
+
+                                               
                                                 
 
                                             }//categorias
@@ -109,23 +174,26 @@
         <table class="porcentaje">
             <thead>
                 <tr>
-                    <th colspan="8">Porcentaje</th>
+                    <th colspan="10">Porcentaje</th>
                                        
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td width="12.5%">25%</td>
-                    <td width="12.5%"></td>
-                
-                    <td width="12.5%">50%</td>
-                    <td width="12.5%"></td>
-                
-                    <td width="12.5%">75%</td>
-                    <td width="12.5%"></td>
+                    <td width="10%">20%</td>
+            		<td width="10%"></td>
+            	
+            		<td width="10%">40%</td>
+            		<td width="10%"></td>
+            	
+            		<td width="10%">60%</td>
+            		<td width="10%"></td>
     
-                    <td width="12.5%">100%</td>
-                    <td width="12.5%"></td>
+            		<td width="10%">80%</td>
+            		<td width="10%"></td>
+                    
+                    <td width="10%">100%</td>
+            		<td width="10%"></td>
                 </tr>
             </tbody>
         </table>
@@ -275,23 +343,26 @@
         <table class="porcentaje">
         	<thead>
                 <tr>
-                    <th colspan="8">Porcentaje</th>
+                    <th colspan="10">Porcentaje</th>
                                        
                 </tr>
             </thead>
             <tbody>
             	<tr>
-            		<td width="12.5%">25%</td>
-            		<td width="12.5%"></td>
+            		<td width="10%">20%</td>
+            		<td width="10%"></td>
             	
-            		<td width="12.5%">50%</td>
-            		<td width="12.5%"></td>
+            		<td width="10%">40%</td>
+            		<td width="10%"></td>
             	
-            		<td width="12.5%">75%</td>
-            		<td width="12.5%"></td>
+            		<td width="10%">60%</td>
+            		<td width="10%"></td>
     
-            		<td width="12.5%">100%</td>
-            		<td width="12.5%"></td>
+            		<td width="10%">80%</td>
+            		<td width="10%"></td>
+                    
+                    <td width="10%">100%</td>
+            		<td width="10%"></td>
             	</tr>
             </tbody>
         </table>
@@ -436,23 +507,26 @@
         <table class="porcentaje">
             <thead>
                 <tr>
-                    <th colspan="8">Porcentaje</th>
+                    <th colspan="10">Porcentaje</th>
                                        
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td width="12.5%">25%</td>
-                    <td width="12.5%"></td>
-                
-                    <td width="12.5%">50%</td>
-                    <td width="12.5%"></td>
-                
-                    <td width="12.5%">75%</td>
-                    <td width="12.5%"></td>
+                   <td width="10%">20%</td>
+            		<td width="10%"></td>
+            	
+            		<td width="10%">40%</td>
+            		<td width="10%"></td>
+            	
+            		<td width="10%">60%</td>
+            		<td width="10%"></td>
     
-                    <td width="12.5%">100%</td>
-                    <td width="12.5%"></td>
+            		<td width="10%">80%</td>
+            		<td width="10%"></td>
+                    
+                    <td width="10%">100%</td>
+            		<td width="10%"></td>
                 </tr>
             </tbody>
         </table>
@@ -599,24 +673,26 @@
         <table class="porcentaje">
             <thead>
                 <tr>
-                    <th colspan="8">Porcentaje</th>
+                    <th colspan="10">Porcentaje</th>
                                        
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td width="12.5%">25%</td>
-                    <td width="12.5%"></td>
-                
-                    <td width="12.5%">50%</td>
-                    <td width="12.5%"></td>
-                
-                    <td width="12.5%">75%</td>
-                    <td width="12.5%"></td>
+                    <td width="10%">20%</td>
+            		<td width="10%"></td>
+            	
+            		<td width="10%">40%</td>
+            		<td width="10%"></td>
+            	
+            		<td width="10%">60%</td>
+            		<td width="10%"></td>
     
-                    <td width="12.5%">100%</td>
-                    <td width="12.5%"></td>
-                </tr>
+            		<td width="10%">80%</td>
+            		<td width="10%"></td>
+                    
+                    <td width="10%">100%</td>
+            		<td width="10%"></td>
             </tbody>
         </table>
 

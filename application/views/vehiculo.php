@@ -48,20 +48,21 @@
         <table id="tabla-despliegue" class="persist-area">
         	<thead>
                 <tr  class="persist-header header-tabla">
-                    <th width="74">N°</th>
-                    <th width="113">Marca</th>
-                    <th width="111">Modelo</th>
-                    <th width="94">Color</th>
-                    <th width="139">Empresa</th>
-                    <th width="100">Monto</th>
-                    <th width="73">Gastos</th>
-                    <th width="74">Monto-Gastos</th>
-                    <th width="200">Fecha Promesa</th>                    
+                    <th width="34px" >N°</th>
+                    <th width="90px">Marca</th>
+                    <th width="60px">Modelo</th>
+                    <th width="65px">Color</th>
+                    <th width="172px">Cliente</th>
+                    <th width="142px">Empresa</th>
+                    <th width="55px">Monto</th>
+                    <th width="44px">Gastos</th>
+                    <th width="62px">Monto-Gastos</th>
+                    <th width="254px">Fecha Promesa</th>                    
                 </tr>
 
         
             </thead>
-            <aside id="tablaPrincipal">
+            
             <tbody id="busqueda-vehiculo">
             <?php
             	foreach($vehiculos->result() as $vehiculo)
@@ -74,6 +75,7 @@
                         <td align="center"><?php echo $vehiculo->marca?></td>
                         <td align="center"><?php echo $vehiculo->modelo?></td>
                         <td align="center"><?php echo $vehiculo->color?></td>
+                        <td align="center"><?php echo $vehiculo->cliente?></td>
                         <td align="center"><?php echo $vehiculo->empresa?></td>
                         <td align="center">$ <?php echo number_format($vehiculo->monto,2)?></td>
                         <td align="center">$ <?php echo number_format($vehiculo->gastos,2)?></td>                    
@@ -97,10 +99,9 @@
             <?
 				}
 			?>
-            <tbody>
+            </tbody>
         </table>
 
-        </aside>
     </section>
 </section>
 
