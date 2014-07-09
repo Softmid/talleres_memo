@@ -48,16 +48,16 @@
         <table id="tabla-despliegue" class="persist-area">
         	<thead>
                 <tr  class="persist-header header-tabla">
-                    <th width="34px" >N°</th>
+                    <th width="37px">N°</th>
                     <th width="90px">Marca</th>
-                    <th width="60px">Modelo</th>
-                    <th width="65px">Color</th>
-                    <th width="172px">Cliente</th>
-                    <th width="142px">Empresa</th>
-                    <th width="55px">Monto</th>
-                    <th width="44px">Gastos</th>
-                    <th width="62px">Monto-Gastos</th>
-                    <th width="254px">Fecha Promesa</th>                    
+                    <th width="64px">Modelo</th>
+                    <th width="68px">Color</th>
+                    <th width="166px">Cliente</th>
+                    <th width="146px">Empresa</th>
+                    <th width="59px">Monto</th>
+                    <th width="48px">Gastos</th>
+                    <th width="65px">Monto-Gastos</th>
+                    <th width="235px">Fecha Promesa</th>                    
                 </tr>
 
         
