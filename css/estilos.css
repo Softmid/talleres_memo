@@ -20,11 +20,6 @@ body
 }
 
 
-::selection
-{
-	background-color: #fff;
-}
-
 a img
 {
 	border: none;
@@ -730,9 +725,9 @@ section.contenedor
 
 			ul#datos .lista-categoria.tamn
 			{
-				width: 400px;
-				float: left;
-				margin-bottom: 10px;
+                width: 250px;
+                float: left;
+                margin-bottom: 10px;
 			}
 
 			ul#datos .lista-categoria.modificar > li
@@ -1293,6 +1288,21 @@ table
 	margin: 5px 0px;
 	cursor: pointer;
 }
+.divCategorias
+{
+    position: relative;
+}
+
+#btnTrabajo
+{
+    width: 90%;
+}
+
+.input-concepto-trabajo {
+    float: left;
+    width: 77% !important;
+    
+}
 
 	.addInput:hover,
 	.addInput:focus,
@@ -1308,14 +1318,16 @@ table
 
 .remInput
 {
-	background-color: #d00000;
-	color: #fff;
-	padding-left: 10px;
-	font-size: 15px;
-	width: 91px;
-	border-radius: 10px;
-	padding-top: 3px;
-	padding-bottom: 3px;
+    width: 10px;
+    color: red;
+    position: relative;
+    /* display: block; */
+    left: -18px;
+    float: left;
+    font-size: 18px;
+    border-radius: 10px;
+    padding-top: 3px;
+}
 }
 
 	.remInput > i
@@ -1338,6 +1350,7 @@ table
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
+    width: 100%;
 }
 
 	.rel-categoria .titulo-categoria
@@ -1357,7 +1370,7 @@ table
 		color: #fff;
 		position: relative;
 		margin: 2px 0px;
-		width: 515px;
+		width: 100%;
 		border: 1px solid #29447E;
 		margin: 5px 0px;
 	}

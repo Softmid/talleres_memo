@@ -22,8 +22,9 @@ class Servicios extends CI_Controller {
 		$data['rel'] = $this->Procesos_Servicios->ver($idOrden);
 		$data['categorias'] = $this->Procesos_Servicios->categorias();
 		$data['suma'] = $this->Procesos_Servicios->ver_suma_monto($idOrden);
+        
 
-		//print_r($data['sub_categorias']->result());
+		//print_r($data['default']->result());
 
 		$this->load->view("rel_categoria", $data);
 		
@@ -152,6 +153,22 @@ class Servicios extends CI_Controller {
 		
 
 		
+	}
+    
+    function actualizar_piezas($id_cat='',$id_subcat='',$id_orden='',$id_servicio='',$piezas='')
+	{	
+
+		$this->load->model('Procesos_Servicios');
+
+		$update = array(
+				'piezas' => $piezas
+		);
+
+		$data['update'] = $this->Procesos_Servicios->actualizar_piezas($id_cat,$id_subcat,$id_orden,$id_servicio,$update);
+
+		
+		echo json_encode($data);
+
 	}
 
 	/* categorias */

@@ -52,6 +52,15 @@
             <li class="clear">
                 <p class="chico"><span>Fecha promesa de salida: </span><?php echo $ordenResult->fechaPromesa?></p>
             </li>
+            <?php if($ordenResult->aseguradora==1){ ?>
+			<li class="clear">
+				<p class="chico"><span>Empresa: </span><?php echo $ordenResult->empresa?></p>
+				<p class="chico"><span>Deducible: </span><?php echo $ordenResult->dedusible?></p>
+				<p class="chico"><span>Numero de Poliza: </span><?php echo $ordenResult->numeroPoliza?></p>
+				<p class="chico"><span>Numero de Reporte: </span><?php echo $ordenResult->numeroReporte?></p>
+				<p class="chico"><span>Fecha de Siniestro: </span><?php echo $ordenResult->fechaSiniestro?></p>
+			</li>
+			<? } ?>
         </ul>
     </section>
 

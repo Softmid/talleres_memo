@@ -12,6 +12,12 @@ class Procesos_Servicios extends CI_Model {
 		$query = $this->db->query("SELECT * FROM servicios WHERE idOrden = '$idOrden'");
 		return $query;
 	}
+    
+    function servicio_default($id,$idCat)
+    {
+        $query = $this->db->query("SELECT * FROM rel_monto_servicios WHERE monto > 0 AND id_servicio = '$id' AND id_categoria = '$idCat'");
+		return $query;
+    }
 
 	function ver_monto_servicio($cat='',$sub_cat='',$orden='',$id_servicio='')
 	{
@@ -67,6 +73,18 @@ class Procesos_Servicios extends CI_Model {
 		$this->db->where('id_orden',$orden);
 		$this->db->where('id_servicio',$id_servicio);
 		$query = $this->db->update('rel_monto_servicios',$monto);
+
+		return $query;
+
+	}
+    
+    function actualizar_piezas($cat='',$sub_cat='',$orden='',$id_servicio='',$piezas='')
+	{
+		$this->db->where('id_categoria',$cat);
+		$this->db->where('id_subcategoria',$sub_cat);
+		$this->db->where('id_orden',$orden);
+		$this->db->where('id_servicio',$id_servicio);
+		$query = $this->db->update('rel_monto_servicios',$piezas);
 
 		return $query;
 

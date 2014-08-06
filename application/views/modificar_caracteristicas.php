@@ -41,18 +41,19 @@
                       	
                                 <a href="#" class="addInput">Agregar</a>
                                 <div class="divCategorias" id="div_corbata"></div>
-                                <input type="hidden" class="cantInput" name="cantInput" id="cantInput" value="0" />
+                                <input type="hidden" class="cantInput" required name="cantInput" id="cantInput" value="0" />
 					
 						
                         	<input type="hidden" name="idVehiculo" id="idVehiculoCar" value="<? echo $idVehiculo ?>"/>
                         	<input type="hidden" name="idOrden" id="idOrden" value="<? echo $idOrden ?>"/>
+                        <input type="button"  name="btnTrabajo" id="btnTrabajo" value="Guardar" />
                     </ul>
                 </li> 
             </ul>
             <aside id="relacion-orden">
 	
 			</aside>
-            <input type="button"  name="btnTrabajo" id="btnTrabajo" value="Guardar" />
+            
         </form>
     </aside>
 
@@ -143,7 +144,7 @@ $(function(){
 				
 				$("#cantInput").val(i);
 						
-				var input ='<p><label for="p_scnts"><input type="text" size="20" id="concepto'+i+'" name="concepto'+i+'" value="" placeholder="Concepto" /></label><a href="#" class="remInput"><i class="icon-remove-sign"></i>Remover</a></p>';
+				var input ='<p><label for="p_scnts"><input class="input-concepto-trabajo" type="text" size="20" id="concepto'+i+'" name="concepto'+i+'" value="" placeholder="Concepto" /></label><a href="#" class="remInput"><i class="icon-remove-sign"></i></a></p>';
 				
 				var j_input = jQuery(input);
 				jQuery('.remInput',j_input).bind('click',borrador);

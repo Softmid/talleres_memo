@@ -3,50 +3,101 @@
 		$montoTotal = 0;
 
 		$suma_monto = $suma->row();
-			
+        $this->load->model('Procesos_Servicios');
 			
 			foreach ($rel->result() as $data) 
-			{	
-					
-					
+			{	   
+
+                
 					echo '<li class="result-categoria clear" data-id="'.$data->id.'">Concepto: '.$data->concepto.' <a class="eliminarRel" data-id="'.$data->id.'" title="Eliminar concepto"><i class="icon-remove-sign"></i></a>';
 					?>
 					<div class="cate_trabajo">
 						
-						<? foreach ($categorias->result() as $data2){
-							
+						<? foreach ($categorias->result() as $data2)
+                        {
+                        
 							echo '<aside>'.$data2->nombre.'
 							<aside class="sub_servicio" id="subcategoria_servicio" data-id="'.$data2->idCategorias.'">';
 
-								$this->load->model('Procesos_Servicios');
+								$val['default'] = $this->Procesos_Servicios->servicio_default($data->id,$data2->idCategorias);
 								$val['sub'] = $this->Procesos_Servicios->subCategorias($data2->idCategorias); 	
-								 		
+								
+                                $default = $val['default']->row();
+                            
 										echo '<select name="subcategoria_servicio" id="subcat_servicio'.$data2->idCategorias.$data->id.'" class="subcat_servicio" data-idCat="'.$data2->idCategorias.'" data-idOrden="'.$data->idOrden.'" data-servicio="'.$data->id.'">';
+                                        
+                                        
+                        
 										echo '<option value="0"></option>';
 										
-										foreach($val['sub']->result() as $data3){
+                                        if($val['sub']->num_rows()>0)
+                                        {
+                                        
+                                            foreach($val['sub']->result() as $data3)
+                                            {
 
-										 echo '<option value="'.$data3->idSubcategorias.'">'.$data3->nombre.'</option>';
-
-
-										}// subcategorias
-				
+                                                if($default->id_subcategoria == $data3->idSubcategorias)
+                                                {
+                                                    echo '<option selected value="'.$data3->idSubcategorias.'">'.$data3->nombre.'</option>';
+                                                }
+                                                else
+                                                {
+                                                    echo '<option value="'.$data3->idSubcategorias.'">'.$data3->nombre.'</option>';
+                                                }
+                                            }//subcategorias
+                                       
+                                        }//existen las subcategorias?
+				                    
 										echo '</select>';						
+				        	
+							echo '</aside><div id="monto_servicios" >';
+                        
+                        if($data2->nombre == 'Pintura' || $data2->nombre == 'pintura'){
+                            
+                        
+                                
+                                    echo '<select name="piezas" class="piezas" id="piezas" id="subcat_servicio'.$data2->idCategorias.$data->id.'" class="subcat_servicio" data-idCat="'.$data2->idCategorias.'" data-idOrden="'.$data->idOrden.'" data-servicio="'.$data->id.'">';
+                                
+                                echo '<option selected value="0">0</option>';
+                                
+                                if($default->piezas == ".5"){ echo '<option selected value=".5">½</option>';} else { echo '<option  value=".5">½</option>'; }
+                                if($default->piezas == "1"){ echo '<option selected value="1">1</option>';} else { echo '<option value="1">1</option>'; }
+                                if($default->piezas == "1.5"){ echo '<option selected value="1.5">1½</option>';} else { echo '<option value="1.5">1½</option>'; }
+                                if($default->piezas == "2"){ echo '<option selected value="2">2</option>';} else { echo '<option value="2">2</option>'; }
+                                if($default->piezas == "2.5"){ echo '<option selected value="2.5">2½</option>';} else { echo '<option value="2.5">2½</option>'; }
+                                if($default->piezas == "3"){ echo '<option selected value="3">3</option>';} else { echo '<option value="3">3</option>'; }
+                                        
+                                   echo '</select>';
+                                    
+                                
+                            
+                        }
+                        
+                                
+                        
+                        if($val['default']->num_rows()>0)
+                        {
+                            if($default->monto>0){
+                                
+                                echo '<input class="monto" type="text" name="monto" size="5" id="monto'.$data2->idCategorias.$data->id.'"           value="'.$default->monto.'"  data-idCat="'.$data2->idCategorias.'" data-idOrden="'.$data->idOrden.'" data-servicio="'.$data->id.'" />';
+                                
+                            }
+                        }//existe el monto?
+                        
+                            else
+                            {
+                                echo '<input class="monto" type="text" name="monto" size="5" id="monto'.$data2->idCategorias.$data->id.'" value="0"  data-idCat="'.$data2->idCategorias.'" data-idOrden="'.$data->idOrden.'" data-servicio="'.$data->id.'" />';
+                            }
+									
 								
-							echo '</aside>
-							<div id="monto_servicios" >
-
-									<input class="monto" type="text" name="monto" size="5" id="monto'.$data2->idCategorias.$data->id.'" value=""  data-idCat="'.$data2->idCategorias.'" data-idOrden="'.$data->idOrden.'" data-servicio="'.$data->id.'" />
-								
-							</div>
-							</aside>';
+							echo '</div></aside>';
 						} ?>
 					</div>
 					</li>
 
 			<?
 
-					//$montoTotal = $montoTotal + $data->monto_sustituir + $data->monto_estetica + $data->monto_pintura + $data->monto_otros + $data->monto_retoque + $data->monto_reparar + $data->monto_mecanica;
+					
 
 			}
 			
@@ -116,7 +167,24 @@
 				});
 				
 			});
+        
+        
+            $(".piezas").change(function(){
 
+				var id_categoria = $(this).attr("data-idCat");
+				var id_servicio = $(this).attr("data-servicio");
+				var id_sub_categoria = $("#subcat_servicio"+id_categoria+id_servicio).val();
+				var id_orden = $(this).attr("data-idOrden");
+				var piezas = $(this).val();
+				
+
+				//alert(id_categoria+"-"+id_sub_categoria+"-"+id_orden+"-"+id_servicio+"-"+piezas);
+			
+				$.post("servicios/actualizar_piezas/"+id_categoria+"/"+id_sub_categoria+"/"+id_orden+"/"+id_servicio+"/"+piezas,function(data){
+
+				
+				});
+			});
 
 		
 	
