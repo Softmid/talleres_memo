@@ -58,15 +58,20 @@
                                 
                                     echo '<select name="piezas" class="piezas" id="piezas" id="subcat_servicio'.$data2->idCategorias.$data->id.'" class="subcat_servicio" data-idCat="'.$data2->idCategorias.'" data-idOrden="'.$data->idOrden.'" data-servicio="'.$data->id.'">';
                                 
-                                echo '<option selected value="0">0</option>';
                                 
-                                if($default->piezas == ".5"){ echo '<option selected value=".5">½</option>';} else { echo '<option  value=".5">½</option>'; }
-                                if($default->piezas == "1"){ echo '<option selected value="1">1</option>';} else { echo '<option value="1">1</option>'; }
-                                if($default->piezas == "1.5"){ echo '<option selected value="1.5">1½</option>';} else { echo '<option value="1.5">1½</option>'; }
-                                if($default->piezas == "2"){ echo '<option selected value="2">2</option>';} else { echo '<option value="2">2</option>'; }
-                                if($default->piezas == "2.5"){ echo '<option selected value="2.5">2½</option>';} else { echo '<option value="2.5">2½</option>'; }
-                                if($default->piezas == "3"){ echo '<option selected value="3">3</option>';} else { echo '<option value="3">3</option>'; }
+                                for($i = 0; $i<=3; $i+=0.25)
                                         
+                                {
+                                    if($default->piezas == $i)
+                                    {
+                                        echo '<option selected value='.$i.'>'.$i.'</option>';
+                                    }
+                                    else
+                                    {
+                                        echo '<option value='.$i.'>'.$i.'</option>';
+                                    }
+                                    
+                                }
                                    echo '</select>';
                                     
                                 
