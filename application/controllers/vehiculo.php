@@ -242,8 +242,8 @@ class Vehiculo extends CI_Controller {
             'estetica_30' => $vehiculos['montos_estetica']->row()->suma_montos * .30,
             'pago_estetica' => $vehiculos['montos_estetica']->row()->suma_montos * .30,
             'total_piezas' => $vehiculos['piezas']->row()->suma_piezas,
-            'pago_pintura' => $vehiculos['piezas']->row()->suma_piezas * 320,
-            'pago_pulida' => $vehiculos['piezas']->row()->suma_piezas * 25,
+            'pago_pintura' => $vehiculos['piezas']->row()->suma_piezas * 330,
+            'pago_pulida' => $vehiculos['piezas']->row()->suma_piezas * 23,
 
             );
             
@@ -264,8 +264,8 @@ class Vehiculo extends CI_Controller {
 			'valuacion_estetica' => $vehiculos['montos_estetica']->row()->suma_montos,
 			'estetica_30' => $vehiculos['montos_estetica']->row()->suma_montos * .30,
 			'total_piezas' => $vehiculos['piezas']->row()->suma_piezas,
-			'pago_pintura' => $vehiculos['piezas']->row()->suma_piezas * 320,
-			'pago_pulida' => $vehiculos['piezas']->row()->suma_piezas * 25,
+			'pago_pintura' => $vehiculos['piezas']->row()->suma_piezas * 330,
+			'pago_pulida' => $vehiculos['piezas']->row()->suma_piezas * 23,
             
 		      );
             
