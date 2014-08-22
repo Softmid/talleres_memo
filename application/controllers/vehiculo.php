@@ -193,6 +193,117 @@ class Vehiculo extends CI_Controller {
 		$this->load->view("site_footer");
 		
 	}
+    
+    function cierre($id_vehiculo,$id_orden)
+	{
+		$this->load->model('Procesos_Vehiculo');
+		
+		$vehiculos['datos'] = $this->Procesos_Vehiculo->verVehiculoMod($id_vehiculo);
+		$this->load->model('Procesos_Orden');
+		$vehiculos['orden'] = $this->Procesos_Orden->verOrden($id_orden);
+        $vehiculos['piezas'] = $this->Procesos_Orden->sumar_piezas($id_orden);
+    
+        $id = $this->Procesos_Orden->search_id('refacciones');
+        $vehiculos['montos_refacciones'] = $this->Procesos_Orden->sumar_montos($id->row()->idCategorias,$id_orden);
+        $id = $this->Procesos_Orden->search_id('T.O.T.');
+        $vehiculos['montos_TOT'] = $this->Procesos_Orden->sumar_montos($id->row()->idCategorias,$id_orden);
+        $id = $this->Procesos_Orden->search_id('hojalateria');
+        $vehiculos['montos_hojalateria'] = $this->Procesos_Orden->sumar_montos($id->row()->idCategorias,$id_orden);
+        $id = $this->Procesos_Orden->search_id('pintura');
+        $vehiculos['montos_pintura'] = $this->Procesos_Orden->sumar_montos($id->row()->idCategorias,$id_orden);
+        $id = $this->Procesos_Orden->search_id('herreria');
+        $vehiculos['montos_herreria'] = $this->Procesos_Orden->sumar_montos($id->row()->idCategorias,$id_orden);
+        $id = $this->Procesos_Orden->search_id('mecanica');
+        $vehiculos['montos_mecanica'] = $this->Procesos_Orden->sumar_montos($id->row()->idCategorias,$id_orden);
+        $id = $this->Procesos_Orden->search_id('estetica');
+        $vehiculos['montos_estetica'] = $this->Procesos_Orden->sumar_montos($id->row()->idCategorias,$id_orden);
+        
+        $suma_HyP = $vehiculos['montos_hojalateria']->row()->suma_montos + $vehiculos['montos_pintura']->row()->suma_montos + $vehiculos['montos_herreria']->row()->suma_montos;
+        
+        
+        
+        $cierre = $this->Procesos_Orden->search_cierre($id_orden);
+        
+        
+        if($cierre->num_rows() == 0)
+        {
+            $vehiculos['datos_cierre'] = array( 
+            'id_orden' => $id_orden,
+            'id_vehiculo' => $id_vehiculo,
+            'total_valuacion' => $vehiculos['orden']->row()->monto,
+            'valuacion_refacciones' => $vehiculos['montos_refacciones']->row()->suma_montos,
+            'valuacion_TOT' => $vehiculos['montos_TOT']->row()->suma_montos,
+            'valuacion_mecanica' => $vehiculos['montos_mecanica']->row()->suma_montos,
+            'mecanica_30' => $vehiculos['montos_mecanica']->row()->suma_montos * .30,
+            'pago_mecanica' => $vehiculos['montos_mecanica']->row()->suma_montos * .30,
+            'valuacion_HP' => $suma_HyP,
+            'HP_30' => $suma_HyP * .30,
+            'valuacion_estetica' => $vehiculos['montos_estetica']->row()->suma_montos,
+            'estetica_30' => $vehiculos['montos_estetica']->row()->suma_montos * .30,
+            'pago_estetica' => $vehiculos['montos_estetica']->row()->suma_montos * .30,
+            'total_piezas' => $vehiculos['piezas']->row()->suma_piezas,
+            'pago_pintura' => $vehiculos['piezas']->row()->suma_piezas * 320,
+            'pago_pulida' => $vehiculos['piezas']->row()->suma_piezas * 25,
+
+            );
+            
+            $this->Procesos_Orden->agregar_cierre($vehiculos['datos_cierre']);
+        }
+        else
+        {
+            $vehiculos['datos_cierre'] = array( 
+			'id_orden' => $id_orden,
+			'id_vehiculo' => $id_vehiculo,
+			'total_valuacion' => $vehiculos['orden']->row()->monto,
+			'valuacion_refacciones' => $vehiculos['montos_refacciones']->row()->suma_montos,
+			'valuacion_TOT' => $vehiculos['montos_TOT']->row()->suma_montos,
+			'valuacion_mecanica' => $vehiculos['montos_mecanica']->row()->suma_montos,
+			'mecanica_30' => $vehiculos['montos_mecanica']->row()->suma_montos * .30,
+			'valuacion_HP' => $suma_HyP,
+			'HP_30' => $suma_HyP * .30,
+			'valuacion_estetica' => $vehiculos['montos_estetica']->row()->suma_montos,
+			'estetica_30' => $vehiculos['montos_estetica']->row()->suma_montos * .30,
+			'total_piezas' => $vehiculos['piezas']->row()->suma_piezas,
+			'pago_pintura' => $vehiculos['piezas']->row()->suma_piezas * 320,
+			'pago_pulida' => $vehiculos['piezas']->row()->suma_piezas * 25,
+            
+		      );
+            
+            $this->Procesos_Orden->update_cierre($vehiculos['datos_cierre'],$id_orden);
+        }
+        
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $vehiculos['datos_cierre'] = array( 
+			'observaciones' => $this->input->post('observaciones'),
+			'comision' => $this->input->post('comision'),
+			'pago_TOT' => $this->input->post('pago_TOT'),
+			'pago_herreria' => $this->input->post('pago_herreria'),
+			'hojalateria' => $this->input->post('hojalateria'),
+			'pago_hojalateria' => $this->input->post('pago_hojalateria'),
+			'pago_refacciones' => $this->input->post('pago_refacciones'),
+			'suma_total' => $this->input->post('suma_total'),
+			'utilidad' => $this->input->post('utilidad'),
+			'percent_utilidad' => $this->input->post('percent_utilidad')
+
+		      );
+            
+            $this->Procesos_Orden->update_cierre($vehiculos['datos_cierre'],$id_orden);
+        }
+        
+        
+        $vehiculos['ver_cierre'] = $this->Procesos_Orden->search_cierre($id_orden);
+
+		$data['pagina'] = array( 
+			'pagina' => 'vehiculos'
+		);
+
+		$this->load->view("site_header");
+		$this->load->view("site_nav",$data);
+		$this->load->view("cierre", $vehiculos);
+		$this->load->view("site_footer");
+		
+	}
 	
 	function modVehiculo ()
 	{

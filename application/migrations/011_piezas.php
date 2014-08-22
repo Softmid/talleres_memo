@@ -7,7 +7,7 @@ class Migration_piezas extends CI_Migration {
 	public function up()
 	{
 		$fields = array(
-            "`piezas` DECIMAL(2,1) DEFAULT NULL",
+            "`piezas` DECIMAL(3,2) DEFAULT NULL",
 
 		);
 		$this->dbforge->add_column('rel_monto_servicios', $fields);
