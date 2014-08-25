@@ -866,28 +866,7 @@ section.contenedor
 		position:relative;
 	}
 		
-	input[type=text],
-	input[type=password],
-	textarea,
-	select
-	{
-		font-family: "Open Sans",Arial,Helvetica,Sans-Serif;
-		display: block;
-		width: 90%;
-		background: #fafafa;
-		border: 1px solid #999;
-		border-radius: 3px;
-		padding: 5px 0px 5px 10px;
-		margin: 5px 0px 5px 18px;
-		-webkit-transition: all 0.25s linear;
-		-moz-transition: all 0.25s linear;
-		-ms-transition: all 0.25s linear;
-		-o-transition: all 0.25s linear;
-		transition: all 0.25s linear;
-		color: #000;
-		position:relative;
-	}
-
+	
 		.nuevo-tam
 		{
 			width: 180px !important;
@@ -1941,3 +1920,26 @@ table
 #tablaPrincipal {
     
 }
+
+	input[type=text],
+	input[type=password],
+	textarea,
+	select
+	{
+		font-family: "Open Sans",Arial,Helvetica,Sans-Serif;
+		display: block;
+		width: 90%;
+		background: #fafafa;
+		border: 1px solid #999;
+		border-radius: 3px;
+		padding: 5px 0px 5px 10px;
+		margin: 5px 0px 5px 18px;
+		-webkit-transition: all 0.25s linear;
+		-moz-transition: all 0.25s linear;
+		-ms-transition: all 0.25s linear;
+		-o-transition: all 0.25s linear;
+		transition: all 0.25s linear;
+		color: #000;
+		position:relative;
+	}
+

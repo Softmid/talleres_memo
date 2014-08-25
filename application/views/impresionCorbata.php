@@ -1,6 +1,8 @@
 <?php 
 		$ordenResult = $orden->row();
 		$vehiculoResult = $vehiculo->row();
+		$suma_piezas = $piezas->row();
+
         $this->load->model('Procesos_Servicios');
 ?>
 
@@ -223,6 +225,20 @@
                 </tr>
             </tbody>
         </table>
+        
+        <table class="briciado">
+            <thead>
+                <tr>
+                    <th colspan="4">Piezas</th>
+                                       
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td width="25%"><? if($suma_piezas->suma_piezas>0){ echo $suma_piezas->suma_piezas; } else { echo "0.00"; } ?></td>
+                </tr>
+            </tbody>
+        </table>
 
     </section>
     
@@ -391,6 +407,19 @@
             	</tr>
             </tbody>
         </table>
+        <table class="briciado">
+            <thead>
+                <tr>
+                    <th colspan="4">Piezas</th>
+                                       
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td width="25%"><? if($suma_piezas->suma_piezas>0){ echo $suma_piezas->suma_piezas; } else { echo "0.00"; } ?></td>
+                </tr>
+            </tbody>
+        </table>
 
 	</section>
 	
@@ -548,6 +577,19 @@
                     <td width="25%"></td>
                     <td width="25%">NO</td>
                     <td width="25%"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="briciado">
+            <thead>
+                <tr>
+                    <th colspan="4">Piezas</th>
+                                       
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td width="25%"><? if($suma_piezas->suma_piezas>0){ echo $suma_piezas->suma_piezas; } else { echo "0.00"; } ?></td>
                 </tr>
             </tbody>
         </table>
@@ -716,7 +758,21 @@
             	</tr>
             </tbody>
         </table>
-
+        <? if($data_cat->nombre == "Estetica"||$data_cat->nombre == "estetica"){ ?>
+        <table class="briciado">
+            <thead>
+                <tr>
+                    <th colspan="4">Piezas</th>
+                                       
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td width="25%"><? if($suma_piezas->suma_piezas>0){ echo $suma_piezas->suma_piezas; } else { echo "0.00"; } ?></td>
+                </tr>
+            </tbody>
+        </table>
+     <?  }//estetica ?>
 	</section>
 	
 </article>
@@ -889,8 +945,10 @@
                 </tr>
             </tbody>
         </table>
+        
 
     </section>
+    
     
 </article>
 

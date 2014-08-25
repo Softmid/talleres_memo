@@ -8,10 +8,8 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    
     <link type="text/css" rel="stylesheet" href="js/pagination/simplePagination.css"/>
-    <link type="text/css" rel="stylesheet" href="css/menu-slide/component.css"/>
-    <link type="text/css" rel="stylesheet" href="css/menu-slide/default.css"/>
 	<link href="css/estilos.css" rel="stylesheet" type="text/css"/>
     <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <link href="css/jqClock.css" rel="stylesheet" type="text/css"/>

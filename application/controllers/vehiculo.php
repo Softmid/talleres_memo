@@ -284,7 +284,8 @@ class Vehiculo extends CI_Controller {
 			'pago_refacciones' => $this->input->post('pago_refacciones'),
 			'suma_total' => $this->input->post('suma_total'),
 			'utilidad' => $this->input->post('utilidad'),
-			'percent_utilidad' => $this->input->post('percent_utilidad')
+			'percent_utilidad' => $this->input->post('percent_utilidad'),
+            'guardado' => 1
 
 		      );
             
@@ -696,6 +697,8 @@ class Vehiculo extends CI_Controller {
 		$data['vehiculo'] = $this->Procesos_Vehiculo->verVehiculoMod($id);
 		$this->load->model('Procesos_Orden');
 		$data['orden'] = $this->Procesos_Orden->verOrden($idOrden);
+        $data['piezas'] = $this->Procesos_Orden->sumar_piezas($idOrden);
+        
 		if($this->session->userdata('privilegios')!=1) 
 			{ 
 				$this->Procesos_Orden->usar_corbata($idOrden);
