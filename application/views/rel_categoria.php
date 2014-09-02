@@ -16,7 +16,7 @@
 						<? foreach ($categorias->result() as $data2)
                         {
                         
-							echo '<aside>'.$data2->nombre.'
+							echo '<aside><p style="padding-left: 18px;">'.$data2->nombre.'</p>
 							<aside class="sub_servicio" id="subcategoria_servicio" data-id="'.$data2->idCategorias.'">';
 
 								$val['default'] = $this->Procesos_Servicios->servicio_default($data->id,$data2->idCategorias);

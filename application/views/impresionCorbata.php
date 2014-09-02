@@ -226,7 +226,7 @@
             </tbody>
         </table>
         
-        <table class="briciado">
+        <table class="briciado" style="width:100px;">
             <thead>
                 <tr>
                     <th colspan="4">Piezas</th>
@@ -235,11 +235,25 @@
             </thead>
             <tbody>
                 <tr>
-                    <td width="25%"><? if($suma_piezas->suma_piezas>0){ echo $suma_piezas->suma_piezas; } else { echo "0.00"; } ?></td>
+                    <td width="15%"><? if($suma_piezas->suma_piezas>0){ echo $suma_piezas->suma_piezas; } else { echo "0.00"; } ?></td>
                 </tr>
             </tbody>
         </table>
-
+        
+        <section class="datos-cliente clear" style="float:left; width: 272px; margin-left: 5px; margin-top: 21px;">
+            <ul class="clear" style="margin: 0px; padding: 0px;">
+                <li class="clear">
+                    <p class="grande" style="font-size: 9px;"><span>Fecha y hora de asignación: </span></p>
+                </li>
+                <li class="clear">
+                    <p class="grande" style="font-size: 9px;"><span>Fecha y hora promesa: </span></p>
+                </li>
+                <li class="clear">
+                    <p class="grande" style="font-size: 9px;"><span>Fecha y hora entrega: </span></p>
+                </li>
+            </ul>
+        </section>
+        
     </section>
     
 </article>

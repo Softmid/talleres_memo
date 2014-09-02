@@ -244,6 +244,10 @@ class Vehiculo extends CI_Controller {
             'total_piezas' => $vehiculos['piezas']->row()->suma_piezas,
             'pago_pintura' => $vehiculos['piezas']->row()->suma_piezas * 330,
             'pago_pulida' => $vehiculos['piezas']->row()->suma_piezas * 23,
+            'valuacion_herreria' => $vehiculos['montos_herreria']->row()->suma_montos,
+			'herreria_30' => $vehiculos['montos_herreria']->row()->suma_montos * .30,
+			'valuacion_HPMH' => $vehiculos['orden']->row()->monto - $vehiculos['montos_TOT']->row()->suma_montos,
+			'HPMH_30' => ($vehiculos['orden']->row()->monto - $vehiculos['montos_TOT']->row()->suma_montos) * .30,
 
             );
             
@@ -266,6 +270,10 @@ class Vehiculo extends CI_Controller {
 			'total_piezas' => $vehiculos['piezas']->row()->suma_piezas,
 			'pago_pintura' => $vehiculos['piezas']->row()->suma_piezas * 330,
 			'pago_pulida' => $vehiculos['piezas']->row()->suma_piezas * 23,
+            'valuacion_herreria' => $vehiculos['montos_herreria']->row()->suma_montos,
+			'herreria_30' => $vehiculos['montos_herreria']->row()->suma_montos * .30,
+            'valuacion_HPMH' => $vehiculos['orden']->row()->monto - $vehiculos['montos_TOT']->row()->suma_montos,
+			'HPMH_30' => ($vehiculos['orden']->row()->monto - $vehiculos['montos_TOT']->row()->suma_montos) * .30,
             
 		      );
             
@@ -281,10 +289,14 @@ class Vehiculo extends CI_Controller {
 			'pago_herreria' => $this->input->post('pago_herreria'),
 			'hojalateria' => $this->input->post('hojalateria'),
 			'pago_hojalateria' => $this->input->post('pago_hojalateria'),
+			'pago_hojalateria_aseguradora' => $this->input->post('pago_hojalateria_aseguradora'),
 			'pago_refacciones' => $this->input->post('pago_refacciones'),
 			'suma_total' => $this->input->post('suma_total'),
 			'utilidad' => $this->input->post('utilidad'),
 			'percent_utilidad' => $this->input->post('percent_utilidad'),
+			'sugerencia_herreria' => $this->input->post('sugerencia_herreria'),
+			'sugerencia_mecanica' => $this->input->post('sugerencia_mecanica'),
+			'sugerencia_hojalateria' => $this->input->post('sugerencia_hojalateria'),
             'guardado' => 1
 
 		      );
@@ -298,11 +310,26 @@ class Vehiculo extends CI_Controller {
 		$data['pagina'] = array( 
 			'pagina' => 'vehiculos'
 		);
+        
+        $datos_orden = $vehiculos['orden']->row();
+        
+        if($datos_orden->aseguradora==0)
+        {
+            $this->load->view("site_header");
+            $this->load->view("site_nav",$data);
+            $this->load->view("cierre", $vehiculos);
+            $this->load->view("site_footer");
+            
+        }
+        if($datos_orden->aseguradora==1)
+        {
+            $this->load->view("site_header");
+            $this->load->view("site_nav",$data);
+            $this->load->view("cierre_aseguradora", $vehiculos);
+            $this->load->view("site_footer");
+        }
 
-		$this->load->view("site_header");
-		$this->load->view("site_nav",$data);
-		$this->load->view("cierre", $vehiculos);
-		$this->load->view("site_footer");
+		
 		
 	}
 	

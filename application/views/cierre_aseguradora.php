@@ -45,7 +45,7 @@
       
     <label for="observaciones" class="col-sm-2 control-label">Observaciones</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control no-margin" id="observaciones" autofocus name="observaciones" value="<? echo $datos_cierre->observaciones; ?>" placeholder="Observaciones">
+      <input type="text" class="form-control no-margin" id="observaciones"  autofocus name="observaciones" value="<? echo $datos_cierre->observaciones; ?>" placeholder="Observaciones">
     </div>
       
     <label for="total_valuacion" class="col-sm-2 control-label">Total Valuación</label>
@@ -77,43 +77,13 @@
     <div class="col-sm-10">
       <input type="text" class="form-control no-margin pago" id="pago_TOT" name="pago_TOT" value="<? echo $datos_cierre->pago_TOT; ?>" placeholder="Pago T.O.T.">
     </div>
-      
-    <label for="valuacion_mecanica" class="col-sm-2 control-label">Valuacion Mecanica</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control no-margin" id="valuacion_mecanica" name="valuacion_mecanica" readonly value="<? echo $datos_cierre->valuacion_mecanica; ?>" placeholder="Valuacion Mecanica">
-    </div>
-      
-    <label for="mecanica_30" class="col-sm-2 control-label">30% m/o Mecanica</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control no-margin" id="mecanica_30" name="mecanica_30" readonly value="<? echo $datos_cierre->mecanica_30; ?>" placeholder="30% m/o Mecanica">
-    </div>
-      
-    <label for="pago_mecanica" class="col-sm-2 control-label">Pago Mecanica</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control no-margin pago" id="pago_mecanica" name="pago_mecanica" value="<? echo $datos_cierre->pago_mecanica; ?>" placeholder="Pago Mecanica">
-    </div>
-    
-    <label for="valuacion_herreria" class="col-sm-2 control-label">Valuacion Herreria</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control no-margin pago" id="valuacion_herreria" readonly value="<? echo $datos_cierre->valuacion_herreria; ?>" name="valuacion_herreria" placeholder="Valuacion Herreria">
-    </div>
-    
-    <label for="herreria_30" class="col-sm-2 control-label">30% Herreria</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control no-margin pago" id="herreria_30" readonly value="<? echo $datos_cierre->herreria_30; ?>" name="herreria_30" placeholder="30% Herreria">
-    </div>
-    
-    <label for="pago_herreria" class="col-sm-2 control-label">Pago Herreria</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control no-margin pago" id="pago_herreria" required value="<? echo $datos_cierre->pago_herreria; ?>" name="pago_herreria" placeholder="Pago Herreria">
-    </div>
-    
-    <label for="valuacion_hyp" class="col-sm-2 control-label">Valuacion HyP</label>
+
+    <label for="valuacion_hyp" class="col-sm-2 control-label">Valuacion H-P-M-H</label>
     <div class="col-sm-10">
       <input type="text" class="form-control no-margin" id="valuacion_hyp" name="valuacion_hyp" readonly value="<? echo $datos_cierre->valuacion_HP; ?>" placeholder="Valuacion HyP">
     </div>
       
-    <label for="HP_30" class="col-sm-2 control-label">30% HyP</label>
+    <label for="HP_30" class="col-sm-2 control-label">30% H-P-M-H</label>
     <div class="col-sm-10">
       <input type="text" class="form-control no-margin" id="HP_30" name="HP_30" readonly value="<? echo $datos_cierre->HP_30; ?>" placeholder="30% HyP">
     </div>
@@ -132,15 +102,30 @@
     <div class="col-sm-10">
       <input type="text" class="form-control no-margin" id="pago_pulida" name="pago_pulida" readonly value="<? echo $datos_cierre->pago_pulida; ?>" placeholder="Pago Pulida">
     </div>
+     
+     <label for="sugerencia_herreria" class="col-sm-2 control-label">Sugerencia Herreria</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control no-margin pago" id="sugerencia_herreria" required value="<? echo $datos_cierre->sugerencia_herreria; ?>" name="sugerencia_herreria" placeholder="Sugerencia Herreria">
+    </div>
+      
+    <label for="pago_herreria" class="col-sm-2 control-label">Pago Herreria</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control no-margin pago" id="pago_herreria" required value="<? echo $datos_cierre->pago_herreria; ?>" name="pago_herreria" placeholder="Pago Herreria">
+    </div>
+     
+     <label for="sugerencia_mecanica" class="col-sm-2 control-label">Sugerencia Mecanica</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control no-margin pago" id="sugerencia_mecanica" required value="<? echo $datos_cierre->sugerencia_mecanica; ?>" name="sugerencia_mecanica" placeholder="Sugerencia Mecanica">
+    </div>
       
     <label for="hojalateria" class="col-sm-2 control-label">Hojalateria</label>
     <div class="col-sm-10">
       <input type="text" class="form-control no-margin" id="hojalateria" name="hojalateria" readonly value="<? echo $datos_cierre->hojalateria; ?>" placeholder="Hojalateria">
     </div>
     
-    <label for="pago_hojalateria" class="col-sm-2 control-label">Pago Hojalateria</label>
+    <label for="pago_hojalateria_aseguradora" class="col-sm-2 control-label">Pago Hojalateria</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control no-margin pago" id="pago_hojalateria" name="pago_hojalateria" value="<? echo $datos_cierre->pago_hojalateria; ?>" placeholder="Pago Hojalateria">
+      <input type="text" class="form-control no-margin pago" id="pago_hojalateria_aseguradora" name="pago_hojalateria_aseguradora" value="<? echo $datos_cierre->pago_hojalateria_aseguradora; ?>" placeholder="Pago Hojalateria">
     </div>
       
     <label for="valuacion_estetica" class="col-sm-2 control-label">Valuacion Estetica</label>
@@ -178,6 +163,8 @@
       <input type="text" class="form-control no-margin" id="final" name="final" readonly value="<? echo $balance; ?>" placeholder="Final">
     </div>
     
+    <input type="hidden" class="form-control no-margin pago" id="pago_mecanica" name="pago_mecanica" value="<? echo $datos_cierre->pago_mecanica; ?>" placeholder="Pago Mecanica">
+    
         <? if($datos_cierre->guardado==0) { ?>
 
             <input type="submit" class="btn btn-default" value="Guardar">
@@ -196,18 +183,19 @@
             var pago_pintura = parseFloat($('#pago_pintura').val());
             var pago_pulida = parseFloat($('#pago_pulida').val());
             var pago_herreria = parseFloat($('#pago_herreria').val());
+            var pago_mecanica = parseFloat($('#pago_mecanica').val());
             
-            var hojalateria = (HP_30)-(pago_pintura + pago_pulida + pago_herreria);
+            var hojalateria = (HP_30)-(pago_pintura + pago_pulida + pago_herreria + pago_mecanica);
             
             $('#hojalateria').val(hojalateria);
-            $('#pago_hojalateria').val(hojalateria);
+            $('#pago_hojalateria_aseguradora').val(hojalateria);
         
         });
         
         $('.pago').change(function(){
             
             var pago_total = 0;
-            var pago_hojalateria = parseFloat($('#pago_hojalateria').val() || 0);
+            var pago_hojalateria = parseFloat($('#pago_hojalateria_aseguradora').val() || 0);
             var pago_pintura = parseFloat($('#pago_pintura').val() || 0);
             var pago_pulida = parseFloat($('#pago_pulida').val() || 0);
             var pago_herreria = parseFloat($('#pago_herreria').val() || 0);
