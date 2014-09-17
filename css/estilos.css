@@ -476,6 +476,8 @@ section.contenedor
 			{
 				margin: 0px;
 				width: 300px;
+                
+               
 			}
 
 			#input_buscador
@@ -907,7 +909,6 @@ section.contenedor
 			-o-transition: all 0.25s linear;
 			transition: all 0.25s linear;
 			outline:none;
-			background:#fff;
 			color: #000;
 		}
 		
@@ -1941,5 +1942,11 @@ table
 		transition: all 0.25s linear;
 		color: #000;
 		position:relative;
+         
 	}
+input[readonly]
+                {
+                    background-color: rgb(134, 134, 139);
+                    color: white;
+                }
 
