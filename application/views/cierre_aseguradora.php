@@ -226,7 +226,6 @@
             var utilidad = total_valuacion - pago_total;
             var percent_utilidad = (utilidad*100)/total_valuacion;
             
-            alert(pago_total);
 
             $('#suma_total').val(pago_total);    
             $('#utilidad').val(utilidad)
