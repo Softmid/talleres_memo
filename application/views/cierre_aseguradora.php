@@ -124,9 +124,9 @@
       <input type="text" class="form-control no-margin" id="hojalateria" name="hojalateria" readonly value="<? echo $datos_cierre->hojalateria; ?>" placeholder="Hojalateria">
                 </li>
                 <li>
-                      <label for="pago_hojalateria" class=" control-label">Pago Hojalateria</label>
+                      <label for="pago_hojalateria_aseguradora" class=" control-label">Pago Hojalateria</label>
     
-      <input type="text" class="form-control no-margin pago" id="pago_hojalateria" name="pago_hojalateria" value="<? echo $datos_cierre->pago_hojalateria; ?>" placeholder="Pago Hojalateria">
+      <input type="text" class="form-control no-margin pago" id="pago_hojalateria_aseguradora" name="pago_hojalateria_aseguradora" value="<? echo $datos_cierre->pago_hojalateria_aseguradora; ?>" placeholder="Pago Hojalateria">
                 </li>
                 <li>
                       <label for="valuacion_estetica" class=" control-label">Valuacion Estetica</label>
@@ -164,11 +164,20 @@
       <input type="text" class="form-control no-margin" id="final" name="final" readonly value="<? echo $balance; ?>" placeholder="Final">
                </li>
                 <li>
-                     <? if($datos_cierre->guardado==0) { ?>
+                     <? 
+        
+        if($this->session->userdata('privilegios') > 1) {
+        
+        if($datos_cierre->guardado==0) { ?>
 
             <input type="submit" class="btn btn-default" value="Guardar">
     
-      <? }  ?>
+      <? } }
+        else
+        {
+            echo '<input type="submit" class="btn btn-default" value="Guardar">';
+        }   
+                    ?>
                 </li>
             </ul>
 </form>
@@ -184,11 +193,11 @@
         
         $('#pago_herreria').change(function(){
 
-            var HP_30 = parseFloat($('#HP_30').val());
-            var pago_pintura = parseFloat($('#pago_pintura').val());
-            var pago_pulida = parseFloat($('#pago_pulida').val());
-            var pago_herreria = parseFloat($('#pago_herreria').val());
-            var pago_mecanica = parseFloat($('#pago_mecanica').val());
+            var HP_30 = parseFloat($('#HP_30').val() || 0);
+            var pago_pintura = parseFloat($('#pago_pintura').val() || 0);
+            var pago_pulida = parseFloat($('#pago_pulida').val() || 0);
+            var pago_herreria = parseFloat($('#pago_herreria').val() || 0);
+            var pago_mecanica = parseFloat($('#pago_mecanica').val() || 0);
             
             var hojalateria = (HP_30)-(pago_pintura + pago_pulida + pago_herreria + pago_mecanica);
             
@@ -198,6 +207,7 @@
         });
         
         $('.pago').change(function(){
+            
             
             var pago_total = 0;
             var pago_hojalateria = parseFloat($('#pago_hojalateria_aseguradora').val() || 0);
@@ -215,6 +225,8 @@
             
             var utilidad = total_valuacion - pago_total;
             var percent_utilidad = (utilidad*100)/total_valuacion;
+            
+            alert(pago_total);
 
             $('#suma_total').val(pago_total);    
             $('#utilidad').val(utilidad)

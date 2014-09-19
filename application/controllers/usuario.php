@@ -103,8 +103,9 @@ class Usuario extends CI_Controller {
 	}
 		function C_eliminarUsuario()
 	{	
+            
 		$data['id'] = array(
-		'idUsuarios' => $this->input->post('id')
+		'idUsuarios' => $this->uri->segment(3)
 		);
 		$data['update'] = array(
 		'privilegios' => 0
@@ -112,6 +113,8 @@ class Usuario extends CI_Controller {
 		
 		$this->load->model('Procesos_Usuario');
 		$this->Procesos_Usuario->eliminarUsuario($data);
+            
+        redirect('usuario/ver_usuario');
 	}
 		
 }

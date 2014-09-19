@@ -178,11 +178,19 @@
       <input type="text" class="form-control no-margin" id="final" name="final" readonly value="<? echo $balance; ?>" placeholder="Final">
                </li>
                 <li>
-                     <? if($datos_cierre->guardado==0) { ?>
+                     <? 
+            if($this->session->userdata('privilegios') > 1) {
+                
+            if($datos_cierre->guardado==0) { ?>
 
             <input type="submit" class="btn btn-default" value="Guardar">
     
-      <? }  ?>
+      <? } }
+                else
+                {
+                    echo '<input type="submit" class="btn btn-default" value="Guardar">';
+                }  
+                ?> 
                 </li>
             </ul>
 </form>
@@ -196,10 +204,10 @@
         
         $('#pago_herreria').change(function(){
 
-            var HP_30 = parseFloat($('#HP_30').val());
-            var pago_pintura = parseFloat($('#pago_pintura').val());
-            var pago_pulida = parseFloat($('#pago_pulida').val());
-            var pago_herreria = parseFloat($('#pago_herreria').val());
+            var HP_30 = parseFloat($('#HP_30').val() || 0);
+            var pago_pintura = parseFloat($('#pago_pintura').val() || 0);
+            var pago_pulida = parseFloat($('#pago_pulida').val() || 0);
+            var pago_herreria = parseFloat($('#pago_herreria').val() || 0);
             
             var hojalateria = (HP_30)-(pago_pintura + pago_pulida + pago_herreria);
             
