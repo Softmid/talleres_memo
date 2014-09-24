@@ -218,8 +218,7 @@ class Vehiculo extends CI_Controller {
         $id = $this->Procesos_Orden->search_id('estetica');
         $vehiculos['montos_estetica'] = $this->Procesos_Orden->sumar_montos($id->row()->idCategorias,$id_orden);
         
-        $suma_HyP = $vehiculos['montos_hojalateria']->row()->suma_montos + $vehiculos['montos_pintura']->row()->suma_montos + $vehiculos['montos_herreria']->row()->suma_montos;
-        
+        $suma_HyP = $vehiculos['montos_hojalateria']->row()->suma_montos + $vehiculos['montos_pintura']->row()->suma_montos;
         
         
         $cierre = $this->Procesos_Orden->search_cierre($id_orden);
@@ -302,6 +301,10 @@ class Vehiculo extends CI_Controller {
 		      );
             
             $this->Procesos_Orden->update_cierre($vehiculos['datos_cierre'],$id_orden);
+            
+            //ingresar gastos 
+            
+            
         }
         
         

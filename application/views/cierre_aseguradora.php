@@ -81,12 +81,12 @@
                 <li>
                     <label for="valuacion_hyp" class="col-sm-2 control-label">Valuacion H-P-M-H</label>
     
-      <input type="text" class="form-control no-margin" id="valuacion_hyp" name="valuacion_hyp" readonly value="<? echo $datos_cierre->valuacion_HP; ?>" placeholder="Valuacion HyP">
+      <input type="text" class="form-control no-margin" id="valuacion_hyp" name="valuacion_hyp" readonly value="<? echo $datos_cierre->valuacion_HPMH; ?>" placeholder="Valuacion HyP">
                 </li>
                 <li>
                     <label for="HP_30" class="col-sm-2 control-label">30% H-P-M-H</label>
     
-      <input type="text" class="form-control no-margin" id="HP_30" name="HP_30" readonly value="<? echo $datos_cierre->HP_30; ?>" placeholder="30% HyP">
+      <input type="text" class="form-control no-margin" id="HP_30" name="HP_30" readonly value="<? echo $datos_cierre->HPMH_30; ?>" placeholder="30% HyP">
                 </li>
                 <li>
                     <label for="total_piezas" class=" control-label">Total de Piezas</label>
@@ -117,6 +117,11 @@
                     <label for="sugerencia_mecanica" class="col-sm-2 control-label">Sugerencia Mecanica</label>
     
       <input type="text" class="form-control no-margin pago" id="sugerencia_mecanica" required value="<? echo $datos_cierre->sugerencia_mecanica; ?>" name="sugerencia_mecanica" placeholder="Sugerencia Mecanica">
+                </li>
+                 <li>
+                    <label for="pago_mecanica" class=" control-label">Pago Mecanica</label>
+    
+      <input type="text" class="form-control no-margin pago" id="pago_mecanica" name="pago_mecanica" value="<? echo $datos_cierre->pago_mecanica; ?>" placeholder="Pago Mecanica">
                 </li>
                 <li>
                     <label for="hojalateria" class=" control-label">Hojalateria</label>
@@ -191,18 +196,18 @@
 <script type="text/javascript">
     $(function (){
         
-        $('#pago_herreria').change(function(){
+        $('#sugerencia_herreria').change(function(){
 
             var HP_30 = parseFloat($('#HP_30').val() || 0);
             var pago_pintura = parseFloat($('#pago_pintura').val() || 0);
             var pago_pulida = parseFloat($('#pago_pulida').val() || 0);
-            var pago_herreria = parseFloat($('#pago_herreria').val() || 0);
+            var pago_herreria = parseFloat($('#sugerencia_herreria').val() || 0);
             var pago_mecanica = parseFloat($('#pago_mecanica').val() || 0);
             
             var hojalateria = (HP_30)-(pago_pintura + pago_pulida + pago_herreria + pago_mecanica);
             
-            $('#hojalateria').val(hojalateria);
-            $('#pago_hojalateria_aseguradora').val(hojalateria);
+            $('#hojalateria').number(true,4).val(hojalateria);
+            $('#pago_hojalateria_aseguradora').number(true,4).val(hojalateria);
         
         });
         
@@ -213,7 +218,7 @@
             var pago_hojalateria = parseFloat($('#pago_hojalateria_aseguradora').val() || 0);
             var pago_pintura = parseFloat($('#pago_pintura').val() || 0);
             var pago_pulida = parseFloat($('#pago_pulida').val() || 0);
-            var pago_herreria = parseFloat($('#pago_herreria').val() || 0);
+            var pago_herreria = parseFloat($('#sugerencia_herreria').val() || 0);
             var pago_estetica = parseFloat($('#pago_estetica').val() || 0);
             var pago_TOT = parseFloat($('#pago_TOT').val() || 0);
             var pago_mecanica = parseFloat($('#pago_mecanica').val() || 0);
@@ -228,7 +233,7 @@
             
 
             $('#suma_total').val(pago_total);    
-            $('#utilidad').val(utilidad)
+            $('#utilidad').number(true,4).val(utilidad);
             $('#percent_utilidad').number(true,2).val(percent_utilidad); 
             
         });
