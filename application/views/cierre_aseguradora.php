@@ -106,7 +106,7 @@
                 <li>
                     <label for="sugerencia_herreria" class="col-sm-2 control-label">Sugerencia Herreria</label>
     
-      <input type="text" class="form-control no-margin pago" id="sugerencia_herreria" required value="<? echo $datos_cierre->sugerencia_herreria; ?>" name="sugerencia_herreria" placeholder="Sugerencia Herreria">
+      <input type="text" class="form-control no-margin pago sugerencia" id="sugerencia_herreria" required value="<? echo $datos_cierre->sugerencia_herreria; ?>" name="sugerencia_herreria" placeholder="Sugerencia Herreria">
                 </li>
                 <li>
                     <label for="pago_herreria" class="col-sm-2 control-label">Pago Herreria</label>
@@ -116,7 +116,7 @@
                 <li>
                     <label for="sugerencia_mecanica" class="col-sm-2 control-label">Sugerencia Mecanica</label>
     
-      <input type="text" class="form-control no-margin pago" id="sugerencia_mecanica" required value="<? echo $datos_cierre->sugerencia_mecanica; ?>" name="sugerencia_mecanica" placeholder="Sugerencia Mecanica">
+      <input type="text" class="form-control no-margin pago sugerencia" id="sugerencia_mecanica" required value="<? echo $datos_cierre->sugerencia_mecanica; ?>" name="sugerencia_mecanica" placeholder="Sugerencia Mecanica">
                 </li>
                  <li>
                     <label for="pago_mecanica" class=" control-label">Pago Mecanica</label>
@@ -196,14 +196,14 @@
 <script type="text/javascript">
     $(function (){
         
-        $('#sugerencia_herreria').change(function(){
+        $('.sugerencia').change(function(){
 
             var HP_30 = parseFloat($('#HP_30').val() || 0);
             var pago_pintura = parseFloat($('#pago_pintura').val() || 0);
             var pago_pulida = parseFloat($('#pago_pulida').val() || 0);
             var pago_herreria = parseFloat($('#sugerencia_herreria').val() || 0);
-            var pago_mecanica = parseFloat($('#pago_mecanica').val() || 0);
-            
+            var pago_mecanica = parseFloat($('#sugerencia_mecanica').val() || 0);
+
             var hojalateria = (HP_30)-(pago_pintura + pago_pulida + pago_herreria + pago_mecanica);
             
             $('#hojalateria').number(true,4).val(hojalateria);
@@ -221,7 +221,7 @@
             var pago_herreria = parseFloat($('#sugerencia_herreria').val() || 0);
             var pago_estetica = parseFloat($('#pago_estetica').val() || 0);
             var pago_TOT = parseFloat($('#pago_TOT').val() || 0);
-            var pago_mecanica = parseFloat($('#pago_mecanica').val() || 0);
+            var pago_mecanica = parseFloat($('#sugerencia_mecanica').val() || 0);
             var pago_refacciones = parseFloat($('#pago_refacciones').val() || 0);
             var total_valuacion = parseFloat($('#total_valuacion').val());
             
