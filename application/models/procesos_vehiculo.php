@@ -57,7 +57,7 @@ class Procesos_Vehiculo extends CI_Model {
 
 	function verVehiculoAjax($text)
 	{
-		$query = $this->db->query("SELECT *,(select sum(monto) from gastos_vehiculo where orden.idOrdenes = gastos_vehiculo.idOrden) as gastos, (select count(*) from gastos_vehiculo where orden.idOrdenes = gastos_vehiculo.idOrden) as numero from vehiculo join orden on vehiculo.idVehiculo = orden.idVehiculo WHERE (orden.finalizado = 0 AND orden.cancelado = 0 AND orden.presupuesto = 0)  AND orden.clave LIKE '%".$text."%' OR vehiculo.marca LIKE '%".$text."%' OR vehiculo.modelo LIKE '%".$text."%' OR vehiculo.color LIKE '%".$text."%' OR vehiculo.year LIKE '%".$text."%'");
+		$query = $this->db->query("SELECT *,(select sum(monto) from gastos_vehiculo where orden.idOrdenes = gastos_vehiculo.idOrden) as gastos, (select count(*) from gastos_vehiculo where orden.idOrdenes = gastos_vehiculo.idOrden) as numero from vehiculo join orden on vehiculo.idVehiculo = orden.idVehiculo WHERE (orden.finalizado = 0 AND orden.cancelado = 0 AND orden.presupuesto = 0)  AND orden.clave LIKE '%".$text."%' OR vehiculo.marca LIKE '%".$text."%' OR vehiculo.modelo LIKE '%".$text."%' OR vehiculo.color LIKE '%".$text."%' OR vehiculo.year LIKE '%".$text."%' OR orden.cliente LIKE '%".$text."%'");
 		return $query;
 	}
 	
