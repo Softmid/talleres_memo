@@ -71,10 +71,8 @@ class Migration_nomina extends CI_Migration {
 		$this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table('nomina_pintura', TRUE);
 		$this->db->simple_query('ALTER TABLE  `nomina_pintura` AUTO_INCREMENT=1 DEFAULT CHARSET=utf8');
-	
-	}
 
-      $fields = array(
+            $fields = array(
             "`id` int(11) unsigned NOT NULL AUTO_INCREMENT",
             "`id_retencion` int(11) DEFAULT NULL",
             "`concepto` varchar(200) DEFAULT NULL",
@@ -87,8 +85,8 @@ class Migration_nomina extends CI_Migration {
             $this->dbforge->add_key('id', TRUE);
             $this->dbforge->create_table('nomina_retenciones_descuentos', TRUE);
             $this->db->simple_query('ALTER TABLE  `nomina_retenciones_descuentos` AUTO_INCREMENT=1 DEFAULT CHARSET=utf8');
-      
-      }
+	
+	}
 
 	public function down()
 	{
