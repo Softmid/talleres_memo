@@ -10,13 +10,14 @@ class Empleado extends CI_Controller {
 		{
 			redirect(base_url().'index.php/login');
 		}
-		
+
+		$this->load->model('Procesos_Empleado');
 		
 	}
 	
 	public function ver()
 	{
-		$this->load->model('Procesos_Empleado');
+		
 		$datos['empleados'] = $this->Procesos_Empleado->ver();
 		
 		$data = array(
@@ -33,7 +34,7 @@ class Empleado extends CI_Controller {
 	function modificar()
 	{
 		$id = $this->input->post('id');
-		$this->load->model('Procesos_Empleado');
+		
 		$data['datos'] = $this->Procesos_Empleado->verMod($id);
 		$this->load->view("modificar_empleado", $data);
 	}
@@ -43,24 +44,21 @@ class Empleado extends CI_Controller {
 	
 	
 				$data['update'] = array(
-				'nombre' => $nombre = $this->input->post('nombreMod'),
-				'apellido_pat' => $apellido_pat = $this->input->post('apellido_patMod'),
-				'apellido_mat' => $apellido_mat = $this->input->post('apellido_matMod'),
-				'direccion' => $username = $this->input->post('direccionMod'),
+				'nombre' => $this->input->post('nombreMod'),
+				'apellidoPat' => $this->input->post('apellido_patMod'),
+				'apellidoMat' => $this->input->post('apellido_matMod'),
+				'direccion' => $this->input->post('direccionMod'),
 				'tel' => $this->input->post('telMod'),
-				'cel' => $privilegios = $this->input->post('celMod'),
-				'area' => $privilegios = $this->input->post('areaMod'),
-				'puesto' => $privilegios = $this->input->post('puestoMod')
+				'cel' => $this->input->post('celMod'),
+				'area' => $this->input->post('areaMod'),
+				'puesto' => $this->input->post('puestoMod')
 				);
-			
 		
-		$data['id'] = array(
-		'idEmpleado' => $this->input->post('idEmpleado')
-		);	
 		
-		$this->load->model('Procesos_Empleado');
-		$success = $this->Procesos_Empleado->mod($data);
-		echo $success;
+		
+
+		$this->Procesos_Empleado->mod($this->input->post('idEmpleado'),$data['update']);
+
 	}
 	
 	
@@ -80,19 +78,17 @@ class Empleado extends CI_Controller {
 		);
 
 		
-		$this->load->model('Procesos_Empleado');
+		
 		$this->Procesos_Empleado->agregar($data);
 	}
-		function C_eliminar()
+		function C_eliminar($id)
 	{	
 		$data['id'] = array(
-		'idEmpleado' => $this->input->post('id')
+		'idEmpleado' => $id
 		);
 		$data['update'] = array(
-		'privilegios' => 0
+		'privilegios' => 1
 		);	
-		
-		$this->load->model('Procesos_Empleado');
 		$this->Procesos_Empleado->eliminar($data);
 	}
 		

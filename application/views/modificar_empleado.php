@@ -17,12 +17,15 @@
             <li><input type="text" name="direccionMod" value="<? echo $ver->direccion ?>" id="direccionMod" placeholder="Direcci&oacute;n" /></li>
             <li><input type="text" name="telMod" value="<? echo $ver->tel ?>" id="telMod" placeholder="Telefono" /></li> 
             <li><input type="text" name="celMod" value="<? echo $ver->cel ?>" id="celMod" placeholder="Celular" /></li> 
-            <li><input type="text" name="areaMod" value="<? echo $ver->area ?>" id="areaMod" placeholder="Area" /></li>
+            <li><select name="areaMod" id="areaMod">
+            	<option value="hojalateria" <? if($ver->area=="hojalateria"){echo "selected";} ?> >Hojalateria</option>
+            	<option value="pintura" <? if($ver->area=="pintura"){echo "selected";} ?> >Pintura</option>
+            </select></li>
             <li><input type="text" name="puestoMod" value="<? echo $ver->puesto ?>" id="puestoMod" placeholder="Puesto" /></li>
-           
+           	<li><input type="button" name="btn_modEmpleados" value="Guardar" id="btn_modEmpleados"  /></li>
         </ul>
         
-        <input type="hidden" name="idEmpleado" value="<?php echo $ver->idEmpleado;?>" />
+        <input type="hidden" name="idEmpleado" id="id_empleado" value="<?php echo $ver->idEmpleado;?>" />
 	</form>
 
 <?
@@ -56,26 +59,23 @@
 		  
 		  }//rules
 	});//validate
-	});//ready		
 
-	function enviarRegistro()
-	{	
+	$("#btn_modEmpleados").on('click',function()
+	{
+
 		if($("#form_empleadoMod").valid())
 		{   
 			
-			$.post("index.php/empleado/mod",$("#form_empleadoMod").serialize(),
-			function(data)
-			{
-				$('#btnFormEmpleado').after(function () {
-					$('#cuadro_modificar').append(data);
-					$('#cuadro_modificar').dialog('open');
-					return false;
-				});
 			
-			}
-			);
+			$.post('index.php/empleado/mod',$("#form_empleadoMod").serialize(),function(data)
+				{
+					alert("Se Actualizo el Registro");
+				});
 		}
-		
-	}	
+
+	});
+
+	});//ready		
+
 </script>
 

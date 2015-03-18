@@ -17,7 +17,7 @@
                         <h3 class="titulo no-center">Area: <span><?php echo $datos->area?></span></h3>
                         <h3 class="titulo no-center">Puesto: <span><?php echo $datos->puesto?></span></h3>
                         <aside class="boton-ab">
-                        	<a class="link-abrir-cuadro link-boton-eliminar  link-boton-finalizar" data-url="index.php/empleado/C_eliminar" data-open="eliminarUsuario" data-id="<?php echo $datos->idEmpleado;?>"><i class="icon-remove"></i></a>
+                        	<a class="link-boton-eliminar" data-url="index.php/empleado/C_eliminar" data-open="eliminarUsuario" data-id="<?php echo $datos->idEmpleado;?>"><i class="icon-remove"></i></a>
                             <a class="link-abrir-post link-boton-modificar modificar-usuario" data-open="form-modificar-usuario" data-link="modificar-usuario" data-url="index.php/empleado/modificar" data-id="<?php echo $datos->idEmpleado;?>" data-width="600"><i class="icon-cogs"></i></a>
                         </aside>
                     </li>
@@ -41,7 +41,10 @@
             <li><input type="text" name="direccion" value="" id="direccion" placeholder="Direcci&oacute;n" /></li>
             <li><input type="text" name="tel" value="" id="tel" placeholder="Telefono" /></li> 
             <li><input type="text" name="cel" value="" id="cel" placeholder="Celular" /></li> 
-            <li><input type="text" name="area" value="" id="area" placeholder="Area" /></li>
+            <li> <select name="area" id="area" >
+            	<option value="hojalateria">Hojalateria</option>
+            	<option value="pintura">Pintura</option>
+            </select></li>
             <li><input type="text" name="puesto" value="" id="puesto" placeholder="Puesto" /></li> 
             <li><input type="button" name="btnFormUsuarios" value="Agregar Empleado" onclick="enviarRegistro();" id="btnFormUsuarios"  /></li>
         </ul>
@@ -91,6 +94,19 @@ $(document).ready(function(){
 			
 		  }//rules
 	});//Validate
+
+	$(".link-boton-eliminar").on('click',function(){
+		var url = $(this).attr('data-url');
+		var id = $(this).attr('data-id');
+		var r = confirm("Deseas Eliminar este Empleado?");
+
+		if(r == true)
+		{
+			$.post(url+'/'+id);
+			location.reload();
+		}
+
+	});
 	
 });//Ready		
 

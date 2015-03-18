@@ -25,18 +25,11 @@ class Procesos_Empleado extends CI_Model {
 		return $query;
 	}
 	
-	function mod($data)
+	function mod($id,$data)
 	{
-		$this->db->where("idEmpleado", $data['id']['idEmpleado']); 
-		$this->db->update('empleados', $data['update']);
-		if($this->db->affected_rows() > 0)
-		{
-			return 'Exitoso';
-		}
-		else
-		{
-			return 'Un fallo, inténtelo de nuevo';
-		}
+		$this->db->where("idEmpleado", $id); 
+		$this->db->update('empleados', $data);
+
 	}
 
 }

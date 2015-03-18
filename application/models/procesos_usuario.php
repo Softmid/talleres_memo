@@ -9,7 +9,7 @@ class Procesos_Usuario extends CI_Model {
 	
 	function verUsuarios()
 	{
-		$query = $this->db->query('SELECT * FROM usuarios WHERE privilegios !=0;');
+		$query = $this->db->query('SELECT * FROM usuarios WHERE privilegios !=1;');
 		return $query;
 	}
 	

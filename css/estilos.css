@@ -1933,8 +1933,8 @@ table
 		background: #fafafa;
 		border: 1px solid #999;
 		border-radius: 3px;
-		padding: 5px 0px 5px 10px;
-		margin: 5px 0px 5px 18px;
+		padding: 5px 0px 5px 5px;
+		margin: 0px 0px 5px 5px;
 		-webkit-transition: all 0.25s linear;
 		-moz-transition: all 0.25s linear;
 		-ms-transition: all 0.25s linear;
@@ -1950,3 +1950,55 @@ input[readonly]
                     color: white;
                 }
 
+
+.retenciones input[type=text]
+{
+    width: 9%;
+    display: inline;
+    
+}
+
+.input-orden-pintura
+{
+    input[type=text]
+    {
+        margin: 5px 0px 10px 5px;
+    }
+}
+
+a.link-boton.menu {
+display: inline-block;
+width: 35%;
+}
+
+.alert
+{
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+color: #3c763d;
+background-color: #dff0d8;
+border-color: #d6e9c6;
+}
+
+.btn_pintura
+{
+    width: 10% !important;
+    display: inline !important;
+        
+}
+
+#items
+{
+	margin-top: 1em;
+}
+
+.borrar
+{
+	width: 50% !important;
+	display: table-cell !important;
+}

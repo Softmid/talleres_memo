@@ -186,8 +186,8 @@
 				//alert(id_categoria+"-"+id_sub_categoria+"-"+id_orden+"-"+id_servicio+"-"+piezas);
 			
 				$.post("servicios/actualizar_piezas/"+id_categoria+"/"+id_sub_categoria+"/"+id_orden+"/"+id_servicio+"/"+piezas,function(data){
-
-				
+                    
+                
 				});
 			});
 

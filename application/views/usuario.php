@@ -9,12 +9,17 @@
 				<? 
 				foreach($usuarios->result() as $usuario)
 				{
+                    $privilegios = "";
+                    if($usuario->privilegios == 1){ $privilegios = "Admin";}
+                    if($usuario->privilegios == 2){ $privilegios = "Normal";}
+                    if($usuario->privilegios == 0){ $privilegios = "Sin Privilegios";}
+                    
 				?>
 					<li>
 						<h3 class="titulo no-center">Nombre Usuario: <span><?php echo $usuario->nombre?></span></h3>
 						<h3 class="titulo no-center">Nombre Usuario: <span><?php echo $usuario->apellido_pat.' '.$usuario->apellido_mat?></span></h3>
 						 <h3 class="titulo no-center">Username: <span><?php echo $usuario->username;?></span></h3>
-						 <h3 class="titulo no-center">Privilegio: <span><?php echo $usuario->privilegios;?></span></h3>
+						 <h3 class="titulo no-center">Privilegio: <span><?php echo $privilegios;?></span></h3>
 						<aside class="boton-ab">
 							<a href="index.php/usuario/C_eliminarUsuario/<? echo $usuario->idUsuarios ?>" class="link-abrir link-boton-eliminar borrar-link" ><i class="icon-remove"></i></a>
 							<a class="link-abrir-post link-boton-modificar modificar-usuario" data-open="form-modificar-usuario" data-link="modificar-usuario" data-url="index.php/usuario/modificarUsuario" data-id="<?php echo $usuario->idUsuarios;?>" data-width="600"><i class="icon-cogs"></i></a>

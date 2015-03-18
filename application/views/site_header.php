@@ -9,6 +9,8 @@
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     
+    <link type="text/css" rel="stylesheet" href="css/jquery.sidr.dark.css"/>
+    <link type="text/css" rel="stylesheet" href="css/jquery.sidr.light.css"/>
     <link type="text/css" rel="stylesheet" href="js/pagination/simplePagination.css"/>
 	<link href="css/estilos.css" rel="stylesheet" type="text/css"/>
     <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
@@ -21,8 +23,9 @@
     <script type="text/javascript" src="js/jqClock.js"></script>
     <script type="text/javascript" src="js/jquery.number.js"></script>
     <script type="text/javascript" src="js/timepicker.js"></script>
+    <script type="text/javascript" src="js/datepicker-es.js"></script>
     <script type="text/javascript" src="js/pagination/jquery.simplePagination.js"></script>
     <script type="text/javascript" src="js/menu-slide/classie.js"></script>
-    <script type="text/javascript" src="js/menu-slide/modernizr.custom.js"></script>
+    <script type="text/javascript" src="js/jquery.sidr.min.js"></script>
 </head>
 <body>

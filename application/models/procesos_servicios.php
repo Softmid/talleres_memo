@@ -73,6 +73,12 @@ class Procesos_Servicios extends CI_Model {
 		$this->db->where('id_orden',$orden);
 		$this->db->where('id_servicio',$id_servicio);
 		$query = $this->db->update('rel_monto_servicios',$monto);
+        
+        $this->load->model('Procesos_Orden');
+        $vehiculos['piezas'] = $this->Procesos_Orden->sumar_piezas($orden);
+        
+        $this->db->where('idOrdenes',$orden);
+        $this->db->update('orden',array('piezas' =>  $vehiculos['piezas']->row()->suma_piezas));
 
 		return $query;
 
@@ -85,6 +91,13 @@ class Procesos_Servicios extends CI_Model {
 		$this->db->where('id_orden',$orden);
 		$this->db->where('id_servicio',$id_servicio);
 		$query = $this->db->update('rel_monto_servicios',$piezas);
+        
+        $this->load->model('Procesos_Orden');
+        $vehiculos['piezas'] = $this->Procesos_Orden->sumar_piezas($orden);
+        
+        $this->db->where('idOrdenes',$orden);
+        $query2 = $this->db->update('orden',array('piezas' =>$vehiculos['piezas']->row()->suma_piezas));
+      
 
 		return $query;
 
